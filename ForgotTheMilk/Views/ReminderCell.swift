@@ -10,6 +10,10 @@ import UIKit
 
 class ReminderCell: UITableViewCell {
     
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var placemarkLabel: UILabel!
+    
+    
     static let reuseIdentifier = "ReminderCell"
 
     override func awakeFromNib() {
@@ -24,7 +28,8 @@ class ReminderCell: UITableViewCell {
     }
     
     func configure(with viewModel: ReminderCellViewModel) {
-        
+        titleLabel.text = viewModel.title
+        placemarkLabel.text = viewModel.placeMark ?? "Temp placework"
     }
 
 }

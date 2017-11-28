@@ -10,23 +10,23 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Master List Controller-->
+        <!--My Reminders-->
         <scene sceneID="lmV-VF-Agw">
             <objects>
                 <tableViewController id="Q3e-q7-cMf" customClass="MasterListController" customModule="ForgotTheMilk" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="F0e-ht-x4f">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.46262657639999999" green="0.78020948170000004" blue="0.94889563320000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReminderCell" rowHeight="120" id="4TL-ER-Kb2">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReminderCell" rowHeight="120" id="4TL-ER-Kb2" customClass="ReminderCell" customModule="ForgotTheMilk" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4TL-ER-Kb2" id="iKz-da-ohq">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="119.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get Milk" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="Uyz-wP-3Nz">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get Milk" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="40" translatesAutoresizingMaskIntoConstraints="NO" id="Uyz-wP-3Nz">
                                             <rect key="frame" x="16" y="11" width="313" height="60"/>
                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="50"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -56,6 +56,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <color key="backgroundColor" red="0.46262657639999999" green="0.78020948170000004" blue="0.94889563320000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstItem="VR0-al-Ruy" firstAttribute="centerY" secondItem="iKz-da-ohq" secondAttribute="centerY" id="7ea-sl-IQU"/>
                                         <constraint firstItem="Uyz-wP-3Nz" firstAttribute="top" secondItem="iKz-da-ohq" secondAttribute="topMargin" id="B7B-gS-dAy"/>
@@ -69,7 +70,10 @@
                                         <constraint firstAttribute="trailingMargin" secondItem="kRn-3v-LAa" secondAttribute="trailing" constant="5" id="t7g-H6-2BK"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="0.46262657639999999" green="0.78020948170000004" blue="0.94889563320000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="placemarkLabel" destination="kRn-3v-LAa" id="dmR-pJ-NlW"/>
+                                    <outlet property="titleLabel" destination="Uyz-wP-3Nz" id="vWx-Xy-iuT"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -77,7 +81,9 @@
                             <outlet property="delegate" destination="Q3e-q7-cMf" id="j8C-NT-EtU"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="FZA-pd-oma"/>
+                    <navigationItem key="navigationItem" title="My Reminders" id="FZA-pd-oma">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Ovr-E0-GCd"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f7Q-K6-Alo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
