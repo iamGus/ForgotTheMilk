@@ -8,11 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		18D474D91FCD547D0004830E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D474D81FCD547D0004830E /* AppDelegate.swift */; };
-		18D474DB1FCD547D0004830E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D474DA1FCD547D0004830E /* ViewController.swift */; };
 		18D474DE1FCD547D0004830E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18D474DC1FCD547D0004830E /* Main.storyboard */; };
 		18D474E01FCD547D0004830E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18D474DF1FCD547D0004830E /* Assets.xcassets */; };
 		18D474E31FCD547D0004830E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18D474E11FCD547D0004830E /* LaunchScreen.storyboard */; };
 		18D474EE1FCD547D0004830E /* ForgotTheMilkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D474ED1FCD547D0004830E /* ForgotTheMilkTests.swift */; };
+		18D474FA1FCD56F40004830E /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D474F91FCD56F40004830E /* CoreDataStack.swift */; };
+		18D474FE1FCD58310004830E /* MasterListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D474FD1FCD58310004830E /* MasterListController.swift */; };
+		18D475001FCD58D80004830E /* ReminderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D474FF1FCD58D80004830E /* ReminderCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,7 +30,6 @@
 /* Begin PBXFileReference section */
 		18D474D51FCD547D0004830E /* ForgotTheMilk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ForgotTheMilk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18D474D81FCD547D0004830E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		18D474DA1FCD547D0004830E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		18D474DD1FCD547D0004830E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		18D474DF1FCD547D0004830E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18D474E21FCD547D0004830E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -36,6 +37,9 @@
 		18D474E91FCD547D0004830E /* ForgotTheMilkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ForgotTheMilkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		18D474ED1FCD547D0004830E /* ForgotTheMilkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotTheMilkTests.swift; sourceTree = "<group>"; };
 		18D474EF1FCD547D0004830E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18D474F91FCD56F40004830E /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		18D474FD1FCD58310004830E /* MasterListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterListController.swift; sourceTree = "<group>"; };
+		18D474FF1FCD58D80004830E /* ReminderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,9 +81,10 @@
 		18D474D71FCD547D0004830E /* ForgotTheMilk */ = {
 			isa = PBXGroup;
 			children = (
+				18D474F81FCD56AA0004830E /* Models */,
+				18D474FB1FCD57250004830E /* Views */,
+				18D474FC1FCD57C00004830E /* Controllers */,
 				18D474D81FCD547D0004830E /* AppDelegate.swift */,
-				18D474DA1FCD547D0004830E /* ViewController.swift */,
-				18D474DC1FCD547D0004830E /* Main.storyboard */,
 				18D474DF1FCD547D0004830E /* Assets.xcassets */,
 				18D474E11FCD547D0004830E /* LaunchScreen.storyboard */,
 				18D474E41FCD547D0004830E /* Info.plist */,
@@ -94,6 +99,31 @@
 				18D474EF1FCD547D0004830E /* Info.plist */,
 			);
 			path = ForgotTheMilkTests;
+			sourceTree = "<group>";
+		};
+		18D474F81FCD56AA0004830E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				18D474F91FCD56F40004830E /* CoreDataStack.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		18D474FB1FCD57250004830E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				18D474DC1FCD547D0004830E /* Main.storyboard */,
+				18D474FF1FCD58D80004830E /* ReminderCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		18D474FC1FCD57C00004830E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				18D474FD1FCD58310004830E /* MasterListController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,8 +229,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18D474DB1FCD547D0004830E /* ViewController.swift in Sources */,
+				18D474FA1FCD56F40004830E /* CoreDataStack.swift in Sources */,
+				18D474FE1FCD58310004830E /* MasterListController.swift in Sources */,
 				18D474D91FCD547D0004830E /* AppDelegate.swift in Sources */,
+				18D475001FCD58D80004830E /* ReminderCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
