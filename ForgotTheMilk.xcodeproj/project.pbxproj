@@ -17,6 +17,9 @@
 		18D475001FCD58D80004830E /* ReminderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D474FF1FCD58D80004830E /* ReminderCell.swift */; };
 		18D475041FCD5C580004830E /* ForgotTheMilk.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 18D475021FCD5C580004830E /* ForgotTheMilk.xcdatamodeld */; };
 		18D475061FCD60D50004830E /* ReminderEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D475051FCD60D50004830E /* ReminderEntry.swift */; };
+		18D475081FCD79860004830E /* ReminderFetchedResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D475071FCD79860004830E /* ReminderFetchedResultsController.swift */; };
+		18D4750A1FCD7AB10004830E /* MasterListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D475091FCD7AB10004830E /* MasterListDataSource.swift */; };
+		18D4750C1FCD7C450004830E /* ReminderCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D4750B1FCD7C450004830E /* ReminderCellViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +47,9 @@
 		18D474FF1FCD58D80004830E /* ReminderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderCell.swift; sourceTree = "<group>"; };
 		18D475031FCD5C580004830E /* ForgotTheMilk.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ForgotTheMilk.xcdatamodel; sourceTree = "<group>"; };
 		18D475051FCD60D50004830E /* ReminderEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderEntry.swift; sourceTree = "<group>"; };
+		18D475071FCD79860004830E /* ReminderFetchedResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderFetchedResultsController.swift; sourceTree = "<group>"; };
+		18D475091FCD7AB10004830E /* MasterListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterListDataSource.swift; sourceTree = "<group>"; };
+		18D4750B1FCD7C450004830E /* ReminderCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderCellViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +118,7 @@
 				18D474F91FCD56F40004830E /* CoreDataStack.swift */,
 				18D475021FCD5C580004830E /* ForgotTheMilk.xcdatamodeld */,
 				18D475051FCD60D50004830E /* ReminderEntry.swift */,
+				18D4750B1FCD7C450004830E /* ReminderCellViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -129,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				18D474FD1FCD58310004830E /* MasterListController.swift */,
+				18D475071FCD79860004830E /* ReminderFetchedResultsController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -136,6 +144,7 @@
 		18D475011FCD5AB90004830E /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				18D475091FCD7AB10004830E /* MasterListDataSource.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -243,12 +252,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18D4750A1FCD7AB10004830E /* MasterListDataSource.swift in Sources */,
 				18D474FA1FCD56F40004830E /* CoreDataStack.swift in Sources */,
 				18D474FE1FCD58310004830E /* MasterListController.swift in Sources */,
+				18D4750C1FCD7C450004830E /* ReminderCellViewModel.swift in Sources */,
 				18D474D91FCD547D0004830E /* AppDelegate.swift in Sources */,
 				18D475061FCD60D50004830E /* ReminderEntry.swift in Sources */,
 				18D475001FCD58D80004830E /* ReminderCell.swift in Sources */,
 				18D475041FCD5C580004830E /* ForgotTheMilk.xcdatamodeld in Sources */,
+				18D475081FCD79860004830E /* ReminderFetchedResultsController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

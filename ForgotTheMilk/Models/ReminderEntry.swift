@@ -16,6 +16,7 @@ public class Reminder: NSManagedObject {
     @NSManaged public var notes: NSString?
     @NSManaged public var timeStamp: NSDate
     @NSManaged public var title: NSString
+    @NSManaged public var placeMark: NSString?
     
     public override func awakeFromInsert() {
         
@@ -73,6 +74,10 @@ extension Reminder {
     
     var notesString: String? {
         return String(describing: notes)
+    }
+    
+    var placeMarkString: String? {
+        return String(describing: placeMark)
     }
     
     var timeStampDate: Date {

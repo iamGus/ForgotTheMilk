@@ -9,6 +9,8 @@
 import UIKit
 
 class ReminderCell: UITableViewCell {
+    
+    static let reuseIdentifier = "ReminderCell"
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -19,6 +21,10 @@ class ReminderCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func configure(with viewModel: ReminderCellViewModel) {
+        
     }
 
 }

@@ -4,10 +4,12 @@
         <attribute name="isActive" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="location" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="placeMark" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="section" optional="YES" transient="YES" attributeType="String" syncable="YES"/>
         <attribute name="timeStamp" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Reminder" positionX="-63" positionY="-18" width="128" height="120"/>
+        <element name="Reminder" positionX="-63" positionY="-18" width="128" height="150"/>
     </elements>
 </model>
