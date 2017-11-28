@@ -74,6 +74,7 @@
                                 <connections>
                                     <outlet property="placemarkLabel" destination="kRn-3v-LAa" id="dmR-pJ-NlW"/>
                                     <outlet property="titleLabel" destination="Uyz-wP-3Nz" id="vWx-Xy-iuT"/>
+                                    <segue destination="t2a-uf-bLy" kind="show" identifier="showDetail" id="I0X-4l-9kl"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -85,7 +86,7 @@
                     <navigationItem key="navigationItem" title="My Reminders" id="FZA-pd-oma">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Ovr-E0-GCd">
                             <connections>
-                                <segue destination="t2a-uf-bLy" kind="show" identifier="addReminder" id="eQj-ll-7Ax"/>
+                                <segue destination="t2a-uf-bLy" kind="show" identifier="newReminder" id="eQj-ll-7Ax"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -212,4 +213,7 @@
     <resources>
         <image name="location_icon" width="17" height="21"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="I0X-4l-9kl"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -21,6 +21,7 @@ class MasterListController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.rowHeight = 120
         tableView.dataSource = dataSource
     }
 
@@ -28,7 +29,22 @@ class MasterListController: UITableViewController {
         emptyTablePlaceholder() // show default text when tableview is empty
     }
 
-   
+    // MARK: Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "newReminder" {
+            let newReminderController = segue.destination as! DetailReminderController
+            newReminderController.managedObjectContext = self.managedObjectContext // send referance of context
+        } else if segue.identifier == "showDetail" {
+            guard let detailsViewController = segue.destination as? DetailReminderController, let indexPath = tableView.indexPathForSelectedRow else { return }
+            
+            let reminder = dataSource.object(at: indexPath)
+            detailsViewController.currentReminder = reminder // pass over selected reminder data
+            detailsViewController.managedObjectContext = self.managedObjectContext // send referance of context
+        }
+    }
+    
+    
     
 
 }

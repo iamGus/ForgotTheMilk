@@ -41,7 +41,7 @@ extension Reminder {
     /// Sort all reminders by dateStamp
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Reminder> {
         let request = NSFetchRequest<Reminder>(entityName: entityName)
-        let sortDescriptor = NSSortDescriptor(key: "timeStamp", ascending: true)
+        let sortDescriptor = NSSortDescriptor(key: "timeStamp", ascending: false)
         request.sortDescriptors = [sortDescriptor]
         return request
     }

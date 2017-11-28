@@ -70,8 +70,17 @@ class DetailReminderController: UIViewController {
             return
         }
         
+        // If there is data in current Entry property then we are editing an existing entry
+        if let currentReminder = currentReminder {
+            
+        } else { // Else it must be a new entry
+            let tempLocation = CLLocation()
+            guard let newReminder = Reminder.insertNewReminder(in: managedObjectContext, title: titleText, location: tempLocation, notes: notesTextView.text) else { return }
+            
+        }
         
-        
+        managedObjectContext.saveChanges()
+        self.navigationController?.popViewController(animated: true)
         
     }
     
