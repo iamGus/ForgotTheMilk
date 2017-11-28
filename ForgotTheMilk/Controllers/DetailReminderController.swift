@@ -23,7 +23,7 @@ class DetailReminderController: UIViewController {
     // Properties
     var managedObjectContext: NSManagedObjectContext!
     var currentReminder: Reminder? // If viewing current reminder master VC dependency injection
-    var locationData: (Location: CLLocation?, Placemark:CLPlacemark?) // Store placemark data from location VC
+    var locationData: (location: CLLocation?, placemark:String?) // Store placemark data from location VC
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,14 +44,20 @@ class DetailReminderController: UIViewController {
     /// Check if this is an existing reminder or a new reminder. If exisiting then populate fields:
     func CheckIfNew() {
         
+        // If Current viewing current reminder
         if let currentReminder = currentReminder {
+            shortTitleTextfield.text = currentReminder.titleString
+            locationButton.setTitle(currentReminder.placeMarkString, for: .normal)
+            if let textView = currentReminder.notesString {
+                notesTextView.text = textView
+            }
             
+            
+            locationData = (currentReminder.retreiveLocation, currentReminder.placeMarkString)
             
         } else {
-            // Must be a new entry
-            // Set Date title to todays date
-            
-            
+            // Must be a new reminder
+            print("New Reminder")
         }
     }
     
@@ -75,7 +81,7 @@ class DetailReminderController: UIViewController {
             
         } else { // Else it must be a new entry
             let tempLocation = CLLocation()
-            guard let newReminder = Reminder.insertNewReminder(in: managedObjectContext, title: titleText, location: tempLocation, notes: notesTextView.text) else { return }
+            guard let newReminder = Reminder.insertNewReminder(in: managedObjectContext, title: titleText, location: tempLocation, notes: notesTextView.text, placemark: "Temp placemark") else { return }
             
         }
         

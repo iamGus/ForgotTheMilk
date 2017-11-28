@@ -29,7 +29,7 @@ class ReminderCell: UITableViewCell {
     
     func configure(with viewModel: ReminderCellViewModel) {
         titleLabel.text = viewModel.title
-        placemarkLabel.text = viewModel.placeMark ?? "Temp placework"
+        placemarkLabel.text = viewModel.placeMark
     }
 
 }

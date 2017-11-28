@@ -142,7 +142,7 @@
                                     <constraint firstAttribute="height" constant="30" id="YVf-7x-Gw1"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="upS-WI-7dX">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="upS-WI-7dX">
                                 <rect key="frame" x="54" y="212" width="181" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Ekm-wz-u95"/>

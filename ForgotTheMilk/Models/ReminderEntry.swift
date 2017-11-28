@@ -16,7 +16,7 @@ public class Reminder: NSManagedObject {
     @NSManaged public var notes: NSString?
     @NSManaged public var timeStamp: NSDate
     @NSManaged public var title: NSString
-    @NSManaged public var placeMark: NSString?
+    @NSManaged public var placeMark: NSString
     
     public override func awakeFromInsert() {
         
@@ -47,7 +47,7 @@ extension Reminder {
     }
     
     /// Use this method to create a new Reminder
-    class func insertNewReminder(in context: NSManagedObjectContext, title: String, location: CLLocation, notes: String?) -> Reminder? {
+    class func insertNewReminder(in context: NSManagedObjectContext, title: String, location: CLLocation, notes: String?, placemark: String) -> Reminder? {
         
         guard let reminder = NSEntityDescription.insertNewObject(forEntityName: Reminder.entityName, into: context) as? Reminder else { return nil }
         
@@ -56,6 +56,7 @@ extension Reminder {
         reminder.setValue(archivedLocation, forKey: "location")
         
         reminder.title = title as NSString
+        reminder.placeMark = placemark as NSString
         
         if let notes = notes {
             reminder.notes = notes as NSString
@@ -73,11 +74,12 @@ extension Reminder {
     }
     
     var notesString: String? {
-        return String(describing: notes)
+        guard let notes = notes else { return nil }
+        return String(notes)
     }
     
-    var placeMarkString: String? {
-        return String(describing: placeMark)
+    var placeMarkString: String {
+        return String(placeMark)
     }
     
     var timeStampDate: Date {
