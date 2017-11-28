@@ -15,6 +15,8 @@
 		18D474FA1FCD56F40004830E /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D474F91FCD56F40004830E /* CoreDataStack.swift */; };
 		18D474FE1FCD58310004830E /* MasterListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D474FD1FCD58310004830E /* MasterListController.swift */; };
 		18D475001FCD58D80004830E /* ReminderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D474FF1FCD58D80004830E /* ReminderCell.swift */; };
+		18D475041FCD5C580004830E /* ForgotTheMilk.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 18D475021FCD5C580004830E /* ForgotTheMilk.xcdatamodeld */; };
+		18D475061FCD60D50004830E /* ReminderEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D475051FCD60D50004830E /* ReminderEntry.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,8 @@
 		18D474F91FCD56F40004830E /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		18D474FD1FCD58310004830E /* MasterListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterListController.swift; sourceTree = "<group>"; };
 		18D474FF1FCD58D80004830E /* ReminderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderCell.swift; sourceTree = "<group>"; };
+		18D475031FCD5C580004830E /* ForgotTheMilk.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ForgotTheMilk.xcdatamodel; sourceTree = "<group>"; };
+		18D475051FCD60D50004830E /* ReminderEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderEntry.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +88,7 @@
 				18D474F81FCD56AA0004830E /* Models */,
 				18D474FB1FCD57250004830E /* Views */,
 				18D474FC1FCD57C00004830E /* Controllers */,
+				18D475011FCD5AB90004830E /* Helpers */,
 				18D474D81FCD547D0004830E /* AppDelegate.swift */,
 				18D474DF1FCD547D0004830E /* Assets.xcassets */,
 				18D474E11FCD547D0004830E /* LaunchScreen.storyboard */,
@@ -105,6 +110,8 @@
 			isa = PBXGroup;
 			children = (
 				18D474F91FCD56F40004830E /* CoreDataStack.swift */,
+				18D475021FCD5C580004830E /* ForgotTheMilk.xcdatamodeld */,
+				18D475051FCD60D50004830E /* ReminderEntry.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -124,6 +131,13 @@
 				18D474FD1FCD58310004830E /* MasterListController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		18D475011FCD5AB90004830E /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,7 +246,9 @@
 				18D474FA1FCD56F40004830E /* CoreDataStack.swift in Sources */,
 				18D474FE1FCD58310004830E /* MasterListController.swift in Sources */,
 				18D474D91FCD547D0004830E /* AppDelegate.swift in Sources */,
+				18D475061FCD60D50004830E /* ReminderEntry.swift in Sources */,
 				18D475001FCD58D80004830E /* ReminderCell.swift in Sources */,
+				18D475041FCD5C580004830E /* ForgotTheMilk.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,6 +492,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		18D475021FCD5C580004830E /* ForgotTheMilk.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				18D475031FCD5C580004830E /* ForgotTheMilk.xcdatamodel */,
+			);
+			currentVersion = 18D475031FCD5C580004830E /* ForgotTheMilk.xcdatamodel */;
+			path = ForgotTheMilk.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 18D474CD1FCD547D0004830E /* Project object */;
 }
