@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -82,12 +83,112 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="My Reminders" id="FZA-pd-oma">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Ovr-E0-GCd"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Ovr-E0-GCd">
+                            <connections>
+                                <segue destination="t2a-uf-bLy" kind="show" identifier="addReminder" id="eQj-ll-7Ax"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f7Q-K6-Alo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="704.79999999999995" y="40.929535232383813"/>
+        </scene>
+        <!--Detail Reminder Controller-->
+        <scene sceneID="RxQ-ll-D80">
+            <objects>
+                <viewController id="t2a-uf-bLy" customClass="DetailReminderController" customModule="ForgotTheMilk" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ers-cc-Tix">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HFG-LU-vUH">
+                                <rect key="frame" x="0.0" y="64" width="375" height="140"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Get Milk!" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Yh-1w-LlR">
+                                        <rect key="frame" x="10" y="10" width="355" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="Cfw-z2-qgh"/>
+                                        </constraints>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="50"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                    </textField>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Enter extra notes here" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="kYz-Tu-DZB">
+                                        <rect key="frame" x="8" y="65" width="359" height="75"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.46262657639999999" green="0.78020948170000004" blue="0.94889563320000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="7Yh-1w-LlR" firstAttribute="leading" secondItem="HFG-LU-vUH" secondAttribute="leading" constant="10" id="27F-KQ-5ZP"/>
+                                    <constraint firstItem="kYz-Tu-DZB" firstAttribute="leading" secondItem="HFG-LU-vUH" secondAttribute="leading" constant="8" id="GxY-bZ-xey"/>
+                                    <constraint firstItem="kYz-Tu-DZB" firstAttribute="top" secondItem="7Yh-1w-LlR" secondAttribute="bottom" constant="5" id="Igl-e3-Q6v"/>
+                                    <constraint firstAttribute="trailing" secondItem="kYz-Tu-DZB" secondAttribute="trailing" constant="8" id="OJj-Kg-dCR"/>
+                                    <constraint firstItem="7Yh-1w-LlR" firstAttribute="top" secondItem="HFG-LU-vUH" secondAttribute="top" constant="10" id="Slb-vc-T5e"/>
+                                    <constraint firstAttribute="bottom" secondItem="kYz-Tu-DZB" secondAttribute="bottom" id="pix-4X-mKc"/>
+                                    <constraint firstAttribute="trailing" secondItem="7Yh-1w-LlR" secondAttribute="trailing" constant="10" id="v9I-mU-uAZ"/>
+                                    <constraint firstAttribute="height" constant="140" id="xY7-SD-aWi"/>
+                                </constraints>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location_icon" translatesAutoresizingMaskIntoConstraints="NO" id="snV-zh-EdG">
+                                <rect key="frame" x="16" y="212" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="5UG-pQ-XvW"/>
+                                    <constraint firstAttribute="height" constant="30" id="YVf-7x-Gw1"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="upS-WI-7dX">
+                                <rect key="frame" x="54" y="212" width="181" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Ekm-wz-u95"/>
+                                    <constraint firstAttribute="width" constant="181" id="v9p-eT-I3Z"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Click here to set location">
+                                    <color key="titleColor" red="0.46262657639999999" green="0.78020948170000004" blue="0.94889563320000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="pxZ-Qx-5jc">
+                                <rect key="frame" x="0.0" y="250" width="375" height="417"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="upS-WI-7dX" firstAttribute="centerY" secondItem="snV-zh-EdG" secondAttribute="centerY" id="2uD-MX-xpM"/>
+                            <constraint firstItem="pxZ-Qx-5jc" firstAttribute="trailing" secondItem="YPZ-12-b6y" secondAttribute="trailing" id="6k2-QX-ekX"/>
+                            <constraint firstItem="YPZ-12-b6y" firstAttribute="trailing" secondItem="HFG-LU-vUH" secondAttribute="trailing" id="7XI-0K-rVR"/>
+                            <constraint firstItem="upS-WI-7dX" firstAttribute="leading" secondItem="snV-zh-EdG" secondAttribute="trailing" constant="8" id="EVU-0W-wju"/>
+                            <constraint firstItem="pxZ-Qx-5jc" firstAttribute="bottom" secondItem="YPZ-12-b6y" secondAttribute="bottom" id="Pt6-gw-MaK"/>
+                            <constraint firstItem="snV-zh-EdG" firstAttribute="top" secondItem="HFG-LU-vUH" secondAttribute="bottom" constant="8" id="T9p-yc-bzT"/>
+                            <constraint firstItem="snV-zh-EdG" firstAttribute="leading" secondItem="YPZ-12-b6y" secondAttribute="leading" constant="16" id="bkL-QX-MaS"/>
+                            <constraint firstItem="HFG-LU-vUH" firstAttribute="top" secondItem="YPZ-12-b6y" secondAttribute="top" id="e6V-ZF-7ao"/>
+                            <constraint firstItem="pxZ-Qx-5jc" firstAttribute="leading" secondItem="YPZ-12-b6y" secondAttribute="leading" id="rbB-dd-B0J"/>
+                            <constraint firstItem="pxZ-Qx-5jc" firstAttribute="top" secondItem="snV-zh-EdG" secondAttribute="bottom" constant="8" id="tNx-ld-VcR"/>
+                            <constraint firstItem="HFG-LU-vUH" firstAttribute="leading" secondItem="YPZ-12-b6y" secondAttribute="leading" id="wGD-j3-ydz"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="YPZ-12-b6y"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Hrr-q4-K51">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="LcE-ly-yZB">
+                            <connections>
+                                <action selector="save:" destination="t2a-uf-bLy" id="qh1-Fa-aTf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="locationButton" destination="upS-WI-7dX" id="74H-S8-yhs"/>
+                        <outlet property="mapView" destination="pxZ-Qx-5jc" id="mH6-Py-U4F"/>
+                        <outlet property="notesTextView" destination="kYz-Tu-DZB" id="AJq-An-dc3"/>
+                        <outlet property="shortTitleTextfield" destination="7Yh-1w-LlR" id="3ON-ao-3xu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rJh-3a-ctV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1496.8" y="40.929535232383813"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Xq8-F5-CgJ">

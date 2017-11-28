@@ -20,6 +20,8 @@
 		18D475081FCD79860004830E /* ReminderFetchedResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D475071FCD79860004830E /* ReminderFetchedResultsController.swift */; };
 		18D4750A1FCD7AB10004830E /* MasterListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D475091FCD7AB10004830E /* MasterListDataSource.swift */; };
 		18D4750C1FCD7C450004830E /* ReminderCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D4750B1FCD7C450004830E /* ReminderCellViewModel.swift */; };
+		18D4750E1FCDA74C0004830E /* DetailReminderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D4750D1FCDA74C0004830E /* DetailReminderController.swift */; };
+		18D475101FCDAD640004830E /* ShowAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D4750F1FCDAD640004830E /* ShowAlert.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,8 @@
 		18D475071FCD79860004830E /* ReminderFetchedResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderFetchedResultsController.swift; sourceTree = "<group>"; };
 		18D475091FCD7AB10004830E /* MasterListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterListDataSource.swift; sourceTree = "<group>"; };
 		18D4750B1FCD7C450004830E /* ReminderCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderCellViewModel.swift; sourceTree = "<group>"; };
+		18D4750D1FCDA74C0004830E /* DetailReminderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailReminderController.swift; sourceTree = "<group>"; };
+		18D4750F1FCDAD640004830E /* ShowAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAlert.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +141,7 @@
 			children = (
 				18D474FD1FCD58310004830E /* MasterListController.swift */,
 				18D475071FCD79860004830E /* ReminderFetchedResultsController.swift */,
+				18D4750D1FCDA74C0004830E /* DetailReminderController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -145,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				18D475091FCD7AB10004830E /* MasterListDataSource.swift */,
+				18D4750F1FCDAD640004830E /* ShowAlert.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -256,10 +262,12 @@
 				18D474FA1FCD56F40004830E /* CoreDataStack.swift in Sources */,
 				18D474FE1FCD58310004830E /* MasterListController.swift in Sources */,
 				18D4750C1FCD7C450004830E /* ReminderCellViewModel.swift in Sources */,
+				18D4750E1FCDA74C0004830E /* DetailReminderController.swift in Sources */,
 				18D474D91FCD547D0004830E /* AppDelegate.swift in Sources */,
 				18D475061FCD60D50004830E /* ReminderEntry.swift in Sources */,
 				18D475001FCD58D80004830E /* ReminderCell.swift in Sources */,
 				18D475041FCD5C580004830E /* ForgotTheMilk.xcdatamodeld in Sources */,
+				18D475101FCDAD640004830E /* ShowAlert.swift in Sources */,
 				18D475081FCD79860004830E /* ReminderFetchedResultsController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
