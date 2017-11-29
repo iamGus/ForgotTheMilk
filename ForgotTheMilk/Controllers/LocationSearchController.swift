@@ -21,6 +21,9 @@ class LocationSearchController: UIViewController, UITableViewDelegate {
         return LocationManager(delegate: self, permissionsDelegate: self)
     }()
     
+    let dataSource = LocationSearchDataSource()
+    let client = LocalSearchAPI()
+    
     var isAuthorized: Bool {
         let isAuthorizedForLocation = LocationManager.isAuthorized
         
@@ -29,10 +32,12 @@ class LocationSearchController: UIViewController, UITableViewDelegate {
     
     var searchController: UISearchController!
     
+    var tempLocation: CLLocationCoordinate2D?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableview.delegate = self
-        tableview.dataSource = self
+        tableview.dataSource = dataSource
 
         // Setup search bar
         configureSearchController()
@@ -139,6 +144,7 @@ extension LocationSearchController: LocationManagerDelegate {
         let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
         let region = MKCoordinateRegion(center: location.coordinate, span: span)
         mapView.setRegion(region, animated: true)
+        tempLocation = location.coordinate
     }
     
     func failedWithError(_ error: LocationError) {
@@ -164,6 +170,18 @@ extension LocationSearchController: UISearchResultsUpdating, UISearchBarDelegate
     
     func updateSearchResults(for searchController: UISearchController) {
         print("updating")
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        client.search(withTerm: searchText, at: tempLocation!) { (mapItems, error) in
+            if let searchError = error  {
+                print(searchError)
+                return
+            }
+            self.dataSource.update(with: mapItems)
+            self.tableview.reloadData()
+        }
     }
     
     

@@ -42,6 +42,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         self.permissionsDelegate = permissionsDelegate
         super.init()
         manager.delegate = self
+       
         
     }
     

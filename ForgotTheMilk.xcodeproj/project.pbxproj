@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1852EA151FCF0D6600EE330E /* LocalSearchAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1852EA141FCF0D6600EE330E /* LocalSearchAPI.swift */; };
+		1852EA171FCF279000EE330E /* LocationSearchDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1852EA161FCF279000EE330E /* LocationSearchDataSource.swift */; };
 		18D474D91FCD547D0004830E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D474D81FCD547D0004830E /* AppDelegate.swift */; };
 		18D474DE1FCD547D0004830E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18D474DC1FCD547D0004830E /* Main.storyboard */; };
 		18D474E01FCD547D0004830E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18D474DF1FCD547D0004830E /* Assets.xcassets */; };
@@ -38,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1852EA141FCF0D6600EE330E /* LocalSearchAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalSearchAPI.swift; sourceTree = "<group>"; };
+		1852EA161FCF279000EE330E /* LocationSearchDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchDataSource.swift; sourceTree = "<group>"; };
 		18D474D51FCD547D0004830E /* ForgotTheMilk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ForgotTheMilk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18D474D81FCD547D0004830E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18D474DD1FCD547D0004830E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -131,6 +135,7 @@
 				18D4750B1FCD7C450004830E /* ReminderCellViewModel.swift */,
 				18DD99761FCEC7870016F485 /* LocationManager.swift */,
 				18DD997C1FCED6210016F485 /* Coordinate.swift */,
+				1852EA141FCF0D6600EE330E /* LocalSearchAPI.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -160,6 +165,7 @@
 			children = (
 				18D475091FCD7AB10004830E /* MasterListDataSource.swift */,
 				18D4750F1FCDAD640004830E /* ShowAlert.swift */,
+				1852EA161FCF279000EE330E /* LocationSearchDataSource.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -269,6 +275,7 @@
 			files = (
 				18D4750A1FCD7AB10004830E /* MasterListDataSource.swift in Sources */,
 				18D474FA1FCD56F40004830E /* CoreDataStack.swift in Sources */,
+				1852EA171FCF279000EE330E /* LocationSearchDataSource.swift in Sources */,
 				18D474FE1FCD58310004830E /* MasterListController.swift in Sources */,
 				18D4750C1FCD7C450004830E /* ReminderCellViewModel.swift in Sources */,
 				18D4750E1FCDA74C0004830E /* DetailReminderController.swift in Sources */,
@@ -278,6 +285,7 @@
 				18DD997B1FCED2D20016F485 /* LocationSearchController.swift in Sources */,
 				18D475001FCD58D80004830E /* ReminderCell.swift in Sources */,
 				18DD99771FCEC7870016F485 /* LocationManager.swift in Sources */,
+				1852EA151FCF0D6600EE330E /* LocalSearchAPI.swift in Sources */,
 				18D475041FCD5C580004830E /* ForgotTheMilk.xcdatamodeld in Sources */,
 				18D475101FCDAD640004830E /* ShowAlert.swift in Sources */,
 				18D475081FCD79860004830E /* ReminderFetchedResultsController.swift in Sources */,
