@@ -28,6 +28,10 @@ class DetailReminderController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        notesTextView.textColor = UIColor.gray
+        notesTextView.text = "Enter extra notes here"
+        notesTextView.delegate = self
+        
         // MARK: Keyboard display and remove
         
         // Observers for keyboard appearing and hiding
@@ -48,6 +52,7 @@ class DetailReminderController: UIViewController {
         if let currentReminder = currentReminder {
             shortTitleTextfield.text = currentReminder.titleString
             locationButton.setTitle(currentReminder.placeMarkString, for: .normal)
+            print(currentReminder.notes)
             if let textView = currentReminder.notesString {
                 notesTextView.text = textView
             }
@@ -81,7 +86,18 @@ class DetailReminderController: UIViewController {
             
         } else { // Else it must be a new entry
             let tempLocation = CLLocation()
-            guard let newReminder = Reminder.insertNewReminder(in: managedObjectContext, title: titleText, location: tempLocation, notes: notesTextView.text, placemark: "Temp placemark") else { return }
+            
+            // Check if notes field has text
+            var notesHasText: String? {
+                if notesTextView.text == "Enter extra notes here" {
+                    return nil
+                } else if notesTextView == nil {
+                    return nil
+                } else {
+                    return notesTextView.text
+                }
+            }
+            guard let newReminder = Reminder.insertNewReminder(in: managedObjectContext, title: titleText, location: tempLocation, notes: notesHasText, placemark: "Temp placemark") else { return }
             
         }
         
@@ -117,3 +133,19 @@ extension DetailReminderController {
     }
 }
 
+// Setting placeholder feature into notes textview
+extension DetailReminderController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.gray && textView.text == "Enter extra notes here" {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "Enter extra notes here"
+            textView.textColor = UIColor.gray
+        }
+    }
+}
