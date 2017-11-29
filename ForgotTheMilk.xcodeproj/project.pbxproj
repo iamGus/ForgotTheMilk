@@ -24,6 +24,7 @@
 		18D475101FCDAD640004830E /* ShowAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D4750F1FCDAD640004830E /* ShowAlert.swift */; };
 		18DD99771FCEC7870016F485 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DD99761FCEC7870016F485 /* LocationManager.swift */; };
 		18DD997B1FCED2D20016F485 /* LocationSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DD997A1FCED2D20016F485 /* LocationSearchController.swift */; };
+		18DD997D1FCED6210016F485 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DD997C1FCED6210016F485 /* Coordinate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		18D4750F1FCDAD640004830E /* ShowAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAlert.swift; sourceTree = "<group>"; };
 		18DD99761FCEC7870016F485 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		18DD997A1FCED2D20016F485 /* LocationSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchController.swift; sourceTree = "<group>"; };
+		18DD997C1FCED6210016F485 /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 				18D475051FCD60D50004830E /* ReminderEntry.swift */,
 				18D4750B1FCD7C450004830E /* ReminderCellViewModel.swift */,
 				18DD99761FCEC7870016F485 /* LocationManager.swift */,
+				18DD997C1FCED6210016F485 /* Coordinate.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 				18D4750E1FCDA74C0004830E /* DetailReminderController.swift in Sources */,
 				18D474D91FCD547D0004830E /* AppDelegate.swift in Sources */,
 				18D475061FCD60D50004830E /* ReminderEntry.swift in Sources */,
+				18DD997D1FCED6210016F485 /* Coordinate.swift in Sources */,
 				18DD997B1FCED2D20016F485 /* LocationSearchController.swift in Sources */,
 				18D475001FCD58D80004830E /* ReminderCell.swift in Sources */,
 				18DD99771FCEC7870016F485 /* LocationManager.swift in Sources */,
