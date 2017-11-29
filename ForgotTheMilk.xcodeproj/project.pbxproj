@@ -23,6 +23,7 @@
 		18D4750E1FCDA74C0004830E /* DetailReminderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D4750D1FCDA74C0004830E /* DetailReminderController.swift */; };
 		18D475101FCDAD640004830E /* ShowAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D4750F1FCDAD640004830E /* ShowAlert.swift */; };
 		18DD99771FCEC7870016F485 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DD99761FCEC7870016F485 /* LocationManager.swift */; };
+		18DD997B1FCED2D20016F485 /* LocationSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DD997A1FCED2D20016F485 /* LocationSearchController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		18D4750D1FCDA74C0004830E /* DetailReminderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailReminderController.swift; sourceTree = "<group>"; };
 		18D4750F1FCDAD640004830E /* ShowAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAlert.swift; sourceTree = "<group>"; };
 		18DD99761FCEC7870016F485 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		18DD997A1FCED2D20016F485 /* LocationSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +147,7 @@
 				18D474FD1FCD58310004830E /* MasterListController.swift */,
 				18D475071FCD79860004830E /* ReminderFetchedResultsController.swift */,
 				18D4750D1FCDA74C0004830E /* DetailReminderController.swift */,
+				18DD997A1FCED2D20016F485 /* LocationSearchController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 				18D4750E1FCDA74C0004830E /* DetailReminderController.swift in Sources */,
 				18D474D91FCD547D0004830E /* AppDelegate.swift in Sources */,
 				18D475061FCD60D50004830E /* ReminderEntry.swift in Sources */,
+				18DD997B1FCED2D20016F485 /* LocationSearchController.swift in Sources */,
 				18D475001FCD58D80004830E /* ReminderCell.swift in Sources */,
 				18DD99771FCEC7870016F485 /* LocationManager.swift in Sources */,
 				18D475041FCD5C580004830E /* ForgotTheMilk.xcdatamodeld in Sources */,

@@ -194,10 +194,10 @@
             </objects>
             <point key="canvasLocation" x="1496.8" y="40.929535232383813"/>
         </scene>
-        <!--View Controller-->
+        <!--Location Search Controller-->
         <scene sceneID="F6U-3U-T9h">
             <objects>
-                <viewController id="qTs-rA-8PG" sceneMemberID="viewController">
+                <viewController id="qTs-rA-8PG" customClass="LocationSearchController" customModule="ForgotTheMilk" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lK5-fl-GNu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -235,6 +235,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="IxQ-SI-Qas"/>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="LPt-gk-VSL" id="GUE-OI-N4d"/>
+                        <outlet property="searchBar" destination="dJN-KN-Jum" id="5xY-Er-nKi"/>
+                        <outlet property="tableview" destination="561-2P-tRb" id="Myd-lD-Lza"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8gv-Tj-nUJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
