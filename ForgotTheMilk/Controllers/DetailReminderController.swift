@@ -24,6 +24,16 @@ class DetailReminderController: UIViewController {
     var managedObjectContext: NSManagedObjectContext!
     var currentReminder: Reminder? // If viewing current reminder master VC dependency injection
     var locationData: (location: CLLocation?, placemark:String?) // Store placemark data from location VC
+        // Check if notes field has text
+        var notesHasText: String? {
+            if notesTextView.text == "Enter extra notes here" {
+                return nil
+            } else if notesTextView == nil {
+                return nil
+            } else {
+                return notesTextView.text
+            }
+        }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,21 +92,16 @@ class DetailReminderController: UIViewController {
         }
         
         // If there is data in current Entry property then we are editing an existing entry
-        if let currentReminder = currentReminder {
+        if currentReminder != nil {
+            let tempLocation = CLLocation()
+            
+            let updateReminder: Reminder? = Reminder.updateReminder(currentReminder: currentReminder!, title: titleText, location: tempLocation, notes: notesHasText, placemark: "Temp placemark")
+            currentReminder = updateReminder
+            
             
         } else { // Else it must be a new entry
             let tempLocation = CLLocation()
             
-            // Check if notes field has text
-            var notesHasText: String? {
-                if notesTextView.text == "Enter extra notes here" {
-                    return nil
-                } else if notesTextView == nil {
-                    return nil
-                } else {
-                    return notesTextView.text
-                }
-            }
             guard let newReminder = Reminder.insertNewReminder(in: managedObjectContext, title: titleText, location: tempLocation, notes: notesHasText, placemark: "Temp placemark") else { return }
             
         }

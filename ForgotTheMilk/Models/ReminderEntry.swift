@@ -66,6 +66,22 @@ extension Reminder {
         
     }
     
+    class func updateReminder(currentReminder: Reminder, title: String, location: CLLocation, notes: String?, placemark: String) -> Reminder {
+        var reminder = currentReminder
+        reminder.title = title as NSString
+        reminder.placeMark = placemark as NSString
+        
+        // store CLLocation
+        let archivedLocation = NSKeyedArchiver.archivedData(withRootObject: location)
+        reminder.setValue(archivedLocation, forKey: "location")
+        
+        if let notes = notes {
+            reminder.notes = notes as NSString
+        }
+        
+        return reminder
+    }
+    
 }
 // Make swift types of managed objects
 extension Reminder {
