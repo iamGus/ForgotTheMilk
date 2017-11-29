@@ -152,6 +152,9 @@
                                 <state key="normal" title="Click here to set location">
                                     <color key="titleColor" red="0.46262657639999999" green="0.78020948170000004" blue="0.94889563320000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <segue destination="qTs-rA-8PG" kind="show" id="C6t-mf-Adc"/>
+                                </connections>
                             </button>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="pxZ-Qx-5jc">
                                 <rect key="frame" x="0.0" y="250" width="375" height="417"/>
@@ -190,6 +193,52 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rJh-3a-ctV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1496.8" y="40.929535232383813"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="F6U-3U-T9h">
+            <objects>
+                <viewController id="qTs-rA-8PG" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lK5-fl-GNu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="dJN-KN-Jum">
+                                <rect key="frame" x="0.0" y="64" width="375" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="8Lh-xs-VTQ"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="561-2P-tRb">
+                                <rect key="frame" x="0.0" y="120" width="375" height="347"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="LPt-gk-VSL">
+                                <rect key="frame" x="0.0" y="467" width="375" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="pXy-Fa-BPn"/>
+                                </constraints>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="LPt-gk-VSL" firstAttribute="leading" secondItem="IxQ-SI-Qas" secondAttribute="leading" id="5HB-wB-4P0"/>
+                            <constraint firstItem="IxQ-SI-Qas" firstAttribute="trailing" secondItem="LPt-gk-VSL" secondAttribute="trailing" id="BGB-BE-8ag"/>
+                            <constraint firstItem="dJN-KN-Jum" firstAttribute="top" secondItem="IxQ-SI-Qas" secondAttribute="top" id="DIz-PO-qT1"/>
+                            <constraint firstItem="561-2P-tRb" firstAttribute="leading" secondItem="IxQ-SI-Qas" secondAttribute="leading" id="JUM-0u-6aH"/>
+                            <constraint firstItem="561-2P-tRb" firstAttribute="top" secondItem="dJN-KN-Jum" secondAttribute="bottom" id="MMG-OY-Aa9"/>
+                            <constraint firstItem="LPt-gk-VSL" firstAttribute="bottom" secondItem="IxQ-SI-Qas" secondAttribute="bottom" id="bJL-N1-yVy"/>
+                            <constraint firstItem="LPt-gk-VSL" firstAttribute="top" secondItem="561-2P-tRb" secondAttribute="bottom" id="fhn-ks-sMY"/>
+                            <constraint firstItem="IxQ-SI-Qas" firstAttribute="trailing" secondItem="561-2P-tRb" secondAttribute="trailing" id="jqV-Ot-Fiq"/>
+                            <constraint firstItem="dJN-KN-Jum" firstAttribute="trailing" secondItem="IxQ-SI-Qas" secondAttribute="trailing" id="mWi-2k-uTl"/>
+                            <constraint firstItem="dJN-KN-Jum" firstAttribute="leading" secondItem="IxQ-SI-Qas" secondAttribute="leading" id="rH0-pY-Y6u"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="IxQ-SI-Qas"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8gv-Tj-nUJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2296.8000000000002" y="35.532233883058474"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Xq8-F5-CgJ">
