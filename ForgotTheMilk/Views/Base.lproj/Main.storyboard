@@ -202,42 +202,45 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="dJN-KN-Jum">
-                                <rect key="frame" x="0.0" y="64" width="375" height="56"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="56" id="8Lh-xs-VTQ"/>
-                                </constraints>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="561-2P-tRb">
-                                <rect key="frame" x="0.0" y="120" width="375" height="347"/>
+                                <rect key="frame" x="0.0" y="114" width="375" height="353"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="LPt-gk-VSL">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LPt-gk-VSL">
                                 <rect key="frame" x="0.0" y="467" width="375" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="pXy-Fa-BPn"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="qTs-rA-8PG" id="ciu-nM-Rbf"/>
+                                </connections>
                             </mapView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UMh-ev-HkA" userLabel="SearchView">
+                                <rect key="frame" x="0.0" y="64" width="375" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="PSW-kU-scm"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="IxQ-SI-Qas" firstAttribute="trailing" secondItem="UMh-ev-HkA" secondAttribute="trailing" id="3ui-yM-ySt"/>
                             <constraint firstItem="LPt-gk-VSL" firstAttribute="leading" secondItem="IxQ-SI-Qas" secondAttribute="leading" id="5HB-wB-4P0"/>
+                            <constraint firstItem="561-2P-tRb" firstAttribute="top" secondItem="UMh-ev-HkA" secondAttribute="bottom" id="5Xm-Ks-fqn"/>
                             <constraint firstItem="IxQ-SI-Qas" firstAttribute="trailing" secondItem="LPt-gk-VSL" secondAttribute="trailing" id="BGB-BE-8ag"/>
-                            <constraint firstItem="dJN-KN-Jum" firstAttribute="top" secondItem="IxQ-SI-Qas" secondAttribute="top" id="DIz-PO-qT1"/>
                             <constraint firstItem="561-2P-tRb" firstAttribute="leading" secondItem="IxQ-SI-Qas" secondAttribute="leading" id="JUM-0u-6aH"/>
-                            <constraint firstItem="561-2P-tRb" firstAttribute="top" secondItem="dJN-KN-Jum" secondAttribute="bottom" id="MMG-OY-Aa9"/>
+                            <constraint firstItem="UMh-ev-HkA" firstAttribute="top" secondItem="IxQ-SI-Qas" secondAttribute="top" id="Scd-HF-ay4"/>
+                            <constraint firstItem="UMh-ev-HkA" firstAttribute="leading" secondItem="IxQ-SI-Qas" secondAttribute="leading" id="W27-Dz-fY0"/>
                             <constraint firstItem="LPt-gk-VSL" firstAttribute="bottom" secondItem="IxQ-SI-Qas" secondAttribute="bottom" id="bJL-N1-yVy"/>
                             <constraint firstItem="LPt-gk-VSL" firstAttribute="top" secondItem="561-2P-tRb" secondAttribute="bottom" id="fhn-ks-sMY"/>
                             <constraint firstItem="IxQ-SI-Qas" firstAttribute="trailing" secondItem="561-2P-tRb" secondAttribute="trailing" id="jqV-Ot-Fiq"/>
-                            <constraint firstItem="dJN-KN-Jum" firstAttribute="trailing" secondItem="IxQ-SI-Qas" secondAttribute="trailing" id="mWi-2k-uTl"/>
-                            <constraint firstItem="dJN-KN-Jum" firstAttribute="leading" secondItem="IxQ-SI-Qas" secondAttribute="leading" id="rH0-pY-Y6u"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="IxQ-SI-Qas"/>
                     </view>
                     <connections>
                         <outlet property="mapView" destination="LPt-gk-VSL" id="GUE-OI-N4d"/>
-                        <outlet property="searchBar" destination="dJN-KN-Jum" id="5xY-Er-nKi"/>
+                        <outlet property="searchViewContainer" destination="UMh-ev-HkA" id="W4F-nG-URS"/>
                         <outlet property="tableview" destination="561-2P-tRb" id="Myd-lD-Lza"/>
                     </connections>
                 </viewController>

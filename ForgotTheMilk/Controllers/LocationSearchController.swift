@@ -11,9 +11,11 @@ import MapKit
 
 class LocationSearchController: UIViewController, UITableViewDelegate {
     
-    @IBOutlet weak var searchBar: UISearchBar!
+    
     @IBOutlet weak var tableview: UITableView!
     @IBOutlet weak var mapView: MKMapView!
+    
+    @IBOutlet weak var searchViewContainer: UIView!
     
     lazy var locationManager: LocationManager = {
         return LocationManager(delegate: self, permissionsDelegate: self)
@@ -25,12 +27,17 @@ class LocationSearchController: UIViewController, UITableViewDelegate {
         return isAuthorizedForLocation
     }
     
+    var searchController: UISearchController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableview.delegate = self
         tableview.dataSource = self
 
-        // Do any additional setup after loading the view.
+        // Setup search bar
+        configureSearchController()
+        
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -129,12 +136,34 @@ extension LocationSearchController: LocationPermissionsDelegate {
 
 extension LocationSearchController: LocationManagerDelegate {
     func obtainedCoordinates(_ location: CLLocation) {
-        let coordinate = Coordinate(location: location)
-        print(coordinate.latitude)
+        let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+        let region = MKCoordinateRegion(center: location.coordinate, span: span)
+        mapView.setRegion(region, animated: true)
     }
     
     func failedWithError(_ error: LocationError) {
         showAlert(title: "Location Error", message: "Sorry, unable to get your current location at this time!")
+    }
+    
+    
+}
+// Search
+
+extension LocationSearchController: UISearchResultsUpdating, UISearchBarDelegate {
+    
+    /// Setup search bar
+    func configureSearchController() {
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search for places"
+        searchController.searchBar.delegate = self
+        searchViewContainer.addSubview(searchController.searchBar)
+    }
+    
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        print("updating")
     }
     
     
