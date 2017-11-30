@@ -38,12 +38,14 @@ class LocationSearchController: UIViewController, UITableViewDelegate {
         super.viewDidLoad()
         tableview.delegate = self
         tableview.dataSource = dataSource
-
+        
         // Setup search bar
         configureSearchController()
         
         
     }
+    
+
     
     override func viewDidAppear(_ animated: Bool) {
         if isAuthorized {
@@ -62,29 +64,17 @@ class LocationSearchController: UIViewController, UITableViewDelegate {
     }
     
 
-    /*
+    
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if searchController.isActive == true {
+           searchController.isActive = false
+        }
+        
+        let cell = dataSource.object(at: indexPath).placemark
+        updateMapsLocation(with: cell)
     }
-    */
 
-}
-
-extension LocationSearchController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        return cell
-    }
-    
-    
 }
 
 // Permissions
@@ -138,7 +128,7 @@ extension LocationSearchController: LocationPermissionsDelegate {
     
     
 }
-
+//MARK: Location and maps
 extension LocationSearchController: LocationManagerDelegate {
     func obtainedCoordinates(_ location: CLLocation) {
         let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
@@ -151,6 +141,16 @@ extension LocationSearchController: LocationManagerDelegate {
         showAlert(title: "Location Error", message: "Sorry, unable to get your current location at this time!")
     }
     
+    func updateMapsLocation(with placemark: MKPlacemark) {
+        //selectedPin = placemark
+        mapView.annotations.flatMap { mapView.removeAnnotation($0) } // remove any previous placemark on map
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = placemark.coordinate
+        mapView.addAnnotation(annotation)
+        let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+        let region = MKCoordinateRegion(center: annotation.coordinate, span: span)
+        mapView.setRegion(region, animated: true)
+    }
     
 }
 // Search
@@ -186,3 +186,4 @@ extension LocationSearchController: UISearchResultsUpdating, UISearchBarDelegate
     
     
 }
+
