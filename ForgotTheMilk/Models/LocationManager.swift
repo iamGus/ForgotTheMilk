@@ -20,6 +20,7 @@ enum LocationError: Error {
     case unknownError
     case disallowedByUser
     case unableToFindLocation
+    case setToWhenInUse
 }
 
 protocol LocationPermissionsDelegate: class {
@@ -48,7 +49,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     
     static var isAuthorized: Bool {
         switch CLLocationManager.authorizationStatus() {
-        case .authorizedWhenInUse: return true
+        case .authorizedAlways: return true
         default: return false
         }
     }
@@ -56,10 +57,16 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     func requestLocationAuthorization() throws {
         let authorizationStatus = CLLocationManager.authorizationStatus()
         
+        switch authorizationStatus {
+        case .notDetermined: manager.requestAlwaysAuthorization()
+        case .denied, .restricted: throw LocationError.disallowedByUser
+        case .authorizedWhenInUse: throw LocationError.setToWhenInUse
+        case .authorizedAlways: return
+        }
         if authorizationStatus == .restricted || authorizationStatus == .denied {
             throw LocationError.disallowedByUser
         } else if authorizationStatus == .notDetermined {
-            manager.requestWhenInUseAuthorization()
+            manager.requestAlwaysAuthorization()
         } else {
             return
         }
@@ -71,9 +78,9 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         // status is not determined so when status changes check:
-        if status == .authorizedWhenInUse {
+        if status == .authorizedAlways {
             permissionsDelegate?.authorizationSucceeded()
-        } else if status == .denied || status == .restricted {
+        } else if status == .denied || status == .restricted || status == .authorizedWhenInUse {
             permissionsDelegate?.authorizationFailedWithStatus(status)
         }
     }

@@ -42,6 +42,8 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Need permission to use your current location</string>
+	<string>Requires access to your location to notify you when you enter or leave a area.2</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Requires access to your location to notify you when you enter or leave a area3</string>
 </dict>
 </plist>

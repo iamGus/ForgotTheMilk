@@ -203,7 +203,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="561-2P-tRb">
-                                <rect key="frame" x="0.0" y="114" width="375" height="353"/>
+                                <rect key="frame" x="0.0" y="114" width="375" height="313"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchResultCell" textLabel="5UW-8t-q44" detailTextLabel="xX2-Sd-ofz" style="IBUITableViewCellStyleSubtitle" id="R5E-AA-DN2">
@@ -214,14 +214,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5UW-8t-q44">
-                                                    <rect key="frame" x="15" y="5" width="34" height="20"/>
+                                                    <rect key="frame" x="15" y="5" width="33.5" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xX2-Sd-ofz">
-                                                    <rect key="frame" x="15" y="25" width="44" height="15"/>
+                                                    <rect key="frame" x="15" y="25.5" width="44" height="14.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
@@ -232,7 +232,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LPt-gk-VSL">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="LPt-gk-VSL">
                                 <rect key="frame" x="0.0" y="467" width="375" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="pXy-Fa-BPn"/>
@@ -248,6 +248,34 @@
                                     <constraint firstAttribute="height" constant="50" id="PSW-kU-scm"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Vv-BR-HDa">
+                                <rect key="frame" x="0.0" y="427" width="375" height="40"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alert me when:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wJi-gN-2vI">
+                                        <rect key="frame" x="8" y="9" width="116" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="qiy-Nl-mtP">
+                                        <rect key="frame" x="134" y="6" width="231" height="29"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <segments>
+                                            <segment title="Arriving"/>
+                                            <segment title="Departing"/>
+                                        </segments>
+                                        <color key="tintColor" red="0.54609554339999999" green="0.78020948170000004" blue="0.94889563320000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </segmentedControl>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="qiy-Nl-mtP" firstAttribute="leading" secondItem="wJi-gN-2vI" secondAttribute="trailing" constant="10" id="7Qk-0h-T5Z"/>
+                                    <constraint firstAttribute="trailing" secondItem="qiy-Nl-mtP" secondAttribute="trailing" constant="10" id="SDQ-Z7-duP"/>
+                                    <constraint firstItem="qiy-Nl-mtP" firstAttribute="centerY" secondItem="wJi-gN-2vI" secondAttribute="centerY" id="iFh-XC-MaR"/>
+                                    <constraint firstItem="wJi-gN-2vI" firstAttribute="leading" secondItem="4Vv-BR-HDa" secondAttribute="leading" constant="8" id="iGc-KP-jAj"/>
+                                    <constraint firstAttribute="height" constant="40" id="xJZ-ir-6Zx"/>
+                                    <constraint firstItem="wJi-gN-2vI" firstAttribute="centerY" secondItem="4Vv-BR-HDa" secondAttribute="centerY" id="yH4-up-59t"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -255,18 +283,22 @@
                             <constraint firstItem="LPt-gk-VSL" firstAttribute="leading" secondItem="IxQ-SI-Qas" secondAttribute="leading" id="5HB-wB-4P0"/>
                             <constraint firstItem="561-2P-tRb" firstAttribute="top" secondItem="UMh-ev-HkA" secondAttribute="bottom" id="5Xm-Ks-fqn"/>
                             <constraint firstItem="IxQ-SI-Qas" firstAttribute="trailing" secondItem="LPt-gk-VSL" secondAttribute="trailing" id="BGB-BE-8ag"/>
+                            <constraint firstItem="4Vv-BR-HDa" firstAttribute="top" secondItem="561-2P-tRb" secondAttribute="bottom" id="Iua-yu-Q9Q"/>
                             <constraint firstItem="561-2P-tRb" firstAttribute="leading" secondItem="IxQ-SI-Qas" secondAttribute="leading" id="JUM-0u-6aH"/>
                             <constraint firstItem="UMh-ev-HkA" firstAttribute="top" secondItem="IxQ-SI-Qas" secondAttribute="top" id="Scd-HF-ay4"/>
+                            <constraint firstItem="LPt-gk-VSL" firstAttribute="top" secondItem="4Vv-BR-HDa" secondAttribute="bottom" id="TRD-0j-L4l"/>
                             <constraint firstItem="UMh-ev-HkA" firstAttribute="leading" secondItem="IxQ-SI-Qas" secondAttribute="leading" id="W27-Dz-fY0"/>
                             <constraint firstItem="LPt-gk-VSL" firstAttribute="bottom" secondItem="IxQ-SI-Qas" secondAttribute="bottom" id="bJL-N1-yVy"/>
-                            <constraint firstItem="LPt-gk-VSL" firstAttribute="top" secondItem="561-2P-tRb" secondAttribute="bottom" id="fhn-ks-sMY"/>
+                            <constraint firstItem="4Vv-BR-HDa" firstAttribute="leading" secondItem="IxQ-SI-Qas" secondAttribute="leading" id="c6F-XS-GGo"/>
                             <constraint firstItem="IxQ-SI-Qas" firstAttribute="trailing" secondItem="561-2P-tRb" secondAttribute="trailing" id="jqV-Ot-Fiq"/>
+                            <constraint firstItem="4Vv-BR-HDa" firstAttribute="trailing" secondItem="IxQ-SI-Qas" secondAttribute="trailing" id="o2g-ov-Dri"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="IxQ-SI-Qas"/>
                     </view>
                     <connections>
                         <outlet property="mapView" destination="LPt-gk-VSL" id="GUE-OI-N4d"/>
                         <outlet property="searchViewContainer" destination="UMh-ev-HkA" id="W4F-nG-URS"/>
+                        <outlet property="segmentControl" destination="iFh-XC-MaR" id="e8H-EU-gvZ"/>
                         <outlet property="tableview" destination="561-2P-tRb" id="Myd-lD-Lza"/>
                     </connections>
                 </viewController>

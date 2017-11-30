@@ -16,6 +16,8 @@ class LocationSearchController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var mapView: MKMapView!
     
     @IBOutlet weak var searchViewContainer: UIView!
+    @IBOutlet weak var segmentControl: NSLayoutConstraint!
+    
     
     lazy var locationManager: LocationManager = {
         return LocationManager(delegate: self, permissionsDelegate: self)
@@ -84,8 +86,12 @@ extension LocationSearchController: LocationPermissionsDelegate {
     func requestLocationPermissions() {
         do {
             try locationManager.requestLocationAuthorization()
+        } catch LocationError.setToWhenInUse {
+            print("set to when in use")
+            //showAlertApplicationSettings(forErorType: LocationError.setToWhenInUse)
         } catch LocationError.disallowedByUser {
             // NOTE: This is where you would normaly have code bringing up alert to user that they need to change settings to allow the app to know location. But the didChangeAuthorization in locationManager is being triggered even when the authorization status has not changed meaning that the authroization failed with status deligate is being triggered which then brings up the correct UIAlert and thus why I have not put any code in here.
+            print("disallowed by user")
             
         } catch let error {
             print("Location Authorization Error: \(error.localizedDescription)")
@@ -100,29 +106,12 @@ extension LocationSearchController: LocationPermissionsDelegate {
     
     func authorizationFailedWithStatus(_ status: CLAuthorizationStatus) {
         // Meaning authorization is denied so ask user to allow permissions in settings
-        let alertController = UIAlertController(title: "Permission Request", message: "Location permission is currently not allowed, please change in settings so app can find your location", preferredStyle: .alert)
-        
-        let okAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        
-        let settingsAction = UIAlertAction(title: "Settings", style: .default) {
-            UIAlertAction in
-            if let url = URL(string: UIApplicationOpenSettingsURLString) {
-                if #available(iOS 10, *) {
-                    UIApplication.shared.open(url, options: [:],
-                                              completionHandler: { (success) in
-                                                print("Open \(UIApplicationOpenSettingsURLString): \(success)")
-                    })
-                } else {
-                    let success = UIApplication.shared.openURL(url)
-                    print("Open \(UIApplicationOpenSettingsURLString): \(success)")
-                }
-            }
+        switch status {
+        case .authorizedWhenInUse: showAlertApplicationSettings(forErorType: LocationError.setToWhenInUse)
+        default: showAlertApplicationSettings(forErorType: LocationError.disallowedByUser)
+            
         }
         
-        alertController.addAction(okAction)
-        alertController.addAction(settingsAction)
-        
-        present(alertController, animated: true, completion: nil)
     }
     
     
@@ -174,14 +163,22 @@ extension LocationSearchController: UISearchResultsUpdating, UISearchBarDelegate
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        client.search(withTerm: searchText, at: tempLocation!) { (mapItems, error) in
-            if let searchError = error  {
-                print(searchError)
-                return
+        if isAuthorized {
+            client.search(withTerm: searchText, at: tempLocation!) { (mapItems, error) in
+                if let searchError = error  {
+                    print(searchError)
+                    return
+                }
+                self.dataSource.update(with: mapItems)
+                self.tableview.reloadData()
             }
-            self.dataSource.update(with: mapItems)
-            self.tableview.reloadData()
+        } else {
+            print("show alert")
+            searchController.isActive = false
+            showAlertApplicationSettings(forErorType: .unknownError)
         }
+        
+        
     }
     
     
