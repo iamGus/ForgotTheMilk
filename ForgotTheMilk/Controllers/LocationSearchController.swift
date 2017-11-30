@@ -40,14 +40,11 @@ class LocationSearchController: UIViewController, UITableViewDelegate {
         super.viewDidLoad()
         tableview.delegate = self
         tableview.dataSource = dataSource
+
         
         // Setup search bar
         configureSearchController()
-        
-        
     }
-    
-
     
     override func viewDidAppear(_ animated: Bool) {
         if isAuthorized {
@@ -118,7 +115,7 @@ extension LocationSearchController: LocationPermissionsDelegate {
     
 }
 //MARK: Location and maps
-extension LocationSearchController: LocationManagerDelegate {
+extension LocationSearchController: LocationManagerDelegate, MKMapViewDelegate {
     func obtainedCoordinates(_ location: CLLocation) {
         let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
         let region = MKCoordinateRegion(center: location.coordinate, span: span)
@@ -134,12 +131,27 @@ extension LocationSearchController: LocationManagerDelegate {
         //selectedPin = placemark
         mapView.annotations.flatMap { mapView.removeAnnotation($0) } // remove any previous placemark on map
         let annotation = MKPointAnnotation()
-        annotation.coordinate = placemark.coordinate
-        mapView.addAnnotation(annotation)
-        let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
-        let region = MKCoordinateRegion(center: annotation.coordinate, span: span)
-        mapView.setRegion(region, animated: true)
+        let coordinate = placemark.coordinate
+        annotation.coordinate = coordinate
+        mapView.zoomToUserLocation(coordinate: coordinate)
+        
+        // Generating a circular region
+        let region = CLCircularRegion(center: coordinate, radius: 50, identifier: "geofence")
+        mapView.removeOverlays(mapView.overlays)
+        let circle = MKCircle(center: coordinate, radius: region.radius)
+        mapView.add(circle)
     }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        guard let circelOverLay = overlay as? MKCircle else {return MKOverlayRenderer()}
+        
+        let circleRenderer = MKCircleRenderer(circle: circelOverLay)
+        circleRenderer.strokeColor = .blue
+        circleRenderer.fillColor = .blue
+        circleRenderer.alpha = 0.2
+        return circleRenderer
+    }
+ 
     
 }
 // Search
@@ -165,8 +177,10 @@ extension LocationSearchController: UISearchResultsUpdating, UISearchBarDelegate
         
         if isAuthorized {
             client.search(withTerm: searchText, at: tempLocation!) { (mapItems, error) in
+                // IF there is no internet connection this error notice is triggered, note though the apple map kit takes too long to bring back this error so would need to inhance this so error came abck quicker in a production app.
                 if let searchError = error  {
-                    print(searchError)
+                    self.searchController.isActive = false
+                    self.showAlert(title: "Error searching", message: "Unable to retrive search data, please check you ahve an internet conenction")
                     return
                 }
                 self.dataSource.update(with: mapItems)

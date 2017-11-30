@@ -10,6 +10,7 @@
 		1852EA151FCF0D6600EE330E /* LocalSearchAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1852EA141FCF0D6600EE330E /* LocalSearchAPI.swift */; };
 		1852EA171FCF279000EE330E /* LocationSearchDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1852EA161FCF279000EE330E /* LocationSearchDataSource.swift */; };
 		18CF5F311FD00BDD00596B68 /* ParseAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF5F301FD00BDD00596B68 /* ParseAddress.swift */; };
+		18CF5F331FD04B0800596B68 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF5F321FD04B0800596B68 /* Utilities.swift */; };
 		18D474D91FCD547D0004830E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D474D81FCD547D0004830E /* AppDelegate.swift */; };
 		18D474DE1FCD547D0004830E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18D474DC1FCD547D0004830E /* Main.storyboard */; };
 		18D474E01FCD547D0004830E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18D474DF1FCD547D0004830E /* Assets.xcassets */; };
@@ -44,6 +45,7 @@
 		1852EA141FCF0D6600EE330E /* LocalSearchAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalSearchAPI.swift; sourceTree = "<group>"; };
 		1852EA161FCF279000EE330E /* LocationSearchDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchDataSource.swift; sourceTree = "<group>"; };
 		18CF5F301FD00BDD00596B68 /* ParseAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseAddress.swift; sourceTree = "<group>"; };
+		18CF5F321FD04B0800596B68 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		18D474D51FCD547D0004830E /* ForgotTheMilk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ForgotTheMilk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18D474D81FCD547D0004830E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18D474DD1FCD547D0004830E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 			children = (
 				18D4750F1FCDAD640004830E /* ShowAlert.swift */,
 				18CF5F301FD00BDD00596B68 /* ParseAddress.swift */,
+				18CF5F321FD04B0800596B68 /* Utilities.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 				18D474FE1FCD58310004830E /* MasterListController.swift in Sources */,
 				18D4750C1FCD7C450004830E /* ReminderCellViewModel.swift in Sources */,
 				18D4750E1FCDA74C0004830E /* DetailReminderController.swift in Sources */,
+				18CF5F331FD04B0800596B68 /* Utilities.swift in Sources */,
 				18D474D91FCD547D0004830E /* AppDelegate.swift in Sources */,
 				18D475061FCD60D50004830E /* ReminderEntry.swift in Sources */,
 				18DD997D1FCED6210016F485 /* Coordinate.swift in Sources */,
