@@ -153,7 +153,7 @@
                                     <color key="titleColor" red="0.46262657639999999" green="0.78020948170000004" blue="0.94889563320000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="qTs-rA-8PG" kind="show" id="C6t-mf-Adc"/>
+                                    <segue destination="qTs-rA-8PG" kind="show" identifier="showLocation" id="C6t-mf-Adc"/>
                                 </connections>
                             </button>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="pxZ-Qx-5jc">

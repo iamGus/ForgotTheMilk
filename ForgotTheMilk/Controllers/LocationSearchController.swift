@@ -9,6 +9,10 @@
 import UIKit
 import MapKit
 
+protocol LocationSearchDelegate: class {
+    func saveSucceeded(locationData: LocationData)
+}
+
 class LocationSearchController: UIViewController, UITableViewDelegate {
     
     
@@ -25,6 +29,7 @@ class LocationSearchController: UIViewController, UITableViewDelegate {
     
     let dataSource = LocationSearchDataSource()
     let client = LocalSearchAPI()
+    weak var delegate: LocationSearchDelegate?
     
     var isAuthorized: Bool {
         let isAuthorizedForLocation = LocationManager.isAuthorized
@@ -35,9 +40,7 @@ class LocationSearchController: UIViewController, UITableViewDelegate {
     var searchController: UISearchController!
     
     // Location properties
-    var locationCoordinates: CLLocation? // Get coordinates to pass to detail view
-    var locationPlacemark: String? // Get placemark as string to pass to detail view
-    var reminderRegion: CLCircularRegion? // Get region to pass back to detail view
+    var selectedPlacemarkData: LocationData?
     var currentLocation: CLLocationCoordinate2D? // Current location for mapview
     
     override func viewDidLoad() {
@@ -68,6 +71,15 @@ class LocationSearchController: UIViewController, UITableViewDelegate {
     
 
     @IBAction func saveLocation(_ sender: Any) {
+        
+        guard let selectedPlaceholder = selectedPlacemarkData, (selectedPlaceholder.locationRegion != nil) else {
+            showAlert(title: "Cannot Save", message: "You have not selected any location, cannot save")
+            return
+        }
+        
+        delegate?.saveSucceeded(locationData: selectedPlaceholder)
+        
+        
     }
     
 
@@ -141,10 +153,9 @@ extension LocationSearchController: LocationManagerDelegate, MKMapViewDelegate {
         mapView.add(circle)
         
         // Update class location properties NOTE: Update this to be an init of a LocationData type
-        let locationCoordinates = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
-        self.locationCoordinates = locationCoordinates
-        self.locationPlacemark = dataSource.parseAddress(from: placemark)
-        self.reminderRegion = region
+        
+        
+         selectedPlacemarkData = LocationData(coordinates: coordinate, placemark: placemark, region: region)
     }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {

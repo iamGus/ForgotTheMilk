@@ -13,7 +13,7 @@ import CoreData
 import CoreLocation
 
 
-class DetailReminderController: UIViewController {
+class DetailReminderController: UIViewController, LocationSearchDelegate {
     
     //Outlets
     @IBOutlet weak var shortTitleTextfield: UITextField!
@@ -26,9 +26,7 @@ class DetailReminderController: UIViewController {
     var currentReminder: Reminder? // If viewing current reminder master VC dependency injection
     
     // Store Region and location data
-    var locationCoordinates: CLLocation?
-    var locationPlacemark: String?
-    var reminderRegion: CLCircularRegion? // Passed from LocationsSearchController
+    var remindersLocationData: LocationData? // Passed from LocationsSearchController
     
         // Check if notes field has text
         var notesHasText: String? {
@@ -78,8 +76,7 @@ class DetailReminderController: UIViewController {
             
             print(currentReminder.objectID.uriRepresentation())
             
-            locationCoordinates = currentReminder.retreiveLocation
-            locationPlacemark = currentReminder.placeMarkString
+            remindersLocationData = LocationData(coordinates: currentReminder.retreiveLocation, placemark: currentReminder.placeMarkString)
             
         } else {
             // Must be a new reminder
@@ -88,6 +85,8 @@ class DetailReminderController: UIViewController {
     }
     
     @IBAction func save(_ sender: Any) {
+        
+        
         
         // Check textfield not empty
         guard let titleText = shortTitleTextfield.text, titleText != "" else {
@@ -111,15 +110,40 @@ class DetailReminderController: UIViewController {
             
             
         } else { // Else it must be a new entry
-            let tempLocation = CLLocation()
+            guard let locationData = remindersLocationData else {
+                // No location data, you must first choose a location befoer you can save
+                showAlert(title: "Cannot save reminder", message: "You have not chosen a location yet, please first choose a location before saving")
+                return
+            }
             
-            guard let newReminder = Reminder.insertNewReminder(in: managedObjectContext, title: titleText, location: tempLocation, notes: notesHasText, placemark: "Temp placemark") else { return }
+            // If users has chosen a new location to replace current one for this Reminder then save this lcoation
+            if locationData.locationRegion != nil {
+                // add new lcoation data for this entry
+                print("New location!")
+            }
+            
+            guard let newReminder = Reminder.insertNewReminder(in: managedObjectContext, title: titleText, location: locationData.locationCoordinates, notes: notesHasText, placemark: locationData.locationPlacemark) else { return }
             
         }
         
         managedObjectContext.saveChanges()
         self.navigationController?.popViewController(animated: true)
         
+    }
+    
+    // MARK: Navigation
+    
+    // Setup DetailVC delegate
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showLocation" {
+            let newReminderController = segue.destination as! LocationSearchController
+            newReminderController.delegate = self
+        }
+    }
+    
+    // Once get locationData back from Location VC update location data
+    func saveSucceeded(locationData: LocationData) {
+        remindersLocationData = locationData
     }
     
 }
