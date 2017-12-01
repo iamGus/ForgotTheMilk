@@ -141,6 +141,7 @@ class DetailReminderController: UIViewController, LocationSearchDelegate {
             // NOW SET CORELOCATION
             print(newReminder.objectID)
             
+            
         }
         
         //managedObjectContext.saveChanges()

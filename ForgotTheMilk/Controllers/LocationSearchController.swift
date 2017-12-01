@@ -146,7 +146,7 @@ extension LocationSearchController: LocationManagerDelegate, MKMapViewDelegate {
         mapView.zoomToUserLocation(coordinate: coordinate)
         
         // Generating a circular region
-        let region = CLCircularRegion(center: coordinate, radius: 50, identifier: "geofence")
+        let region = CLCircularRegion(center: coordinate, radius: 50, identifier: "tempory")
         
         mapView.removeOverlays(mapView.overlays)
         let circle = MKCircle(center: coordinate, radius: region.radius)

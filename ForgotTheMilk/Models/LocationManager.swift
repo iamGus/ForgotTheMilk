@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreLocation
+import CoreData
 
 extension Coordinate {
     init(location: CLLocation) {
@@ -21,6 +22,11 @@ enum LocationError: Error {
     case disallowedByUser
     case unableToFindLocation
     case setToWhenInUse
+}
+
+enum AddLocationMonitoringError: Error {
+    case notSupported
+    case permissionNotAlways
 }
 
 protocol LocationPermissionsDelegate: class {
@@ -110,25 +116,24 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         delegate?.obtainedCoordinates(location)
     }
     
-    func getPlacemark(forLocation location: CLLocation, completionHandler: @escaping (CLPlacemark?, String?) -> ()) {
-        let geocoder = CLGeocoder()
+    /// Adding location monitor for a Reminder
+    func addMonitoringOfReminder(region: CLCircularRegion, objectID: NSManagedObjectID) throws {
+        let passedRegion = region
+        let region = CLCircularRegion(center: passedRegion.center, radius: passedRegion.radius, identifier: objectID.uriRepresentation().absoluteString)
         
-        geocoder.reverseGeocodeLocation(location, completionHandler: {
-            placemarks, error in
-            
-            if let err = error {
-                completionHandler(nil, err.localizedDescription)
-            } else if let placemarkArray = placemarks {
-                if let placemark = placemarkArray.first {
-                    completionHandler(placemark, nil)
-                } else {
-                    completionHandler(nil, "Placemark was nil")
-                }
-            } else {
-                completionHandler(nil, "Unknown error")
-            }
-        })
+        // If monitoring not available
+        if !CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
+            throw AddLocationMonitoringError.notSupported
+        }
         
+        // If User not set location permission to always
+        if CLLocationManager.authorizationStatus() != .authorizedAlways {
+            throw AddLocationMonitoringError.permissionNotAlways
+        }
+        region.notifyOnEntry = passedRegion.notifyOnEntry
+        region.notifyOnExit = passedRegion.notifyOnExit
+        
+        manager.startMonitoring(for: region)
     }
     
 }
