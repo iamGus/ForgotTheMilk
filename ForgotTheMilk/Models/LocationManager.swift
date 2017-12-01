@@ -74,6 +74,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     
     func requestLocation() {
         manager.requestLocation()
+        
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {

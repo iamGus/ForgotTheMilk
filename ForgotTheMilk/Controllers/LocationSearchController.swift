@@ -34,7 +34,11 @@ class LocationSearchController: UIViewController, UITableViewDelegate {
     
     var searchController: UISearchController!
     
-    var tempLocation: CLLocationCoordinate2D?
+    // Location properties
+    var locationCoordinates: CLLocation? // Get coordinates to pass to detail view
+    var locationPlacemark: String? // Get placemark as string to pass to detail view
+    var reminderRegion: CLCircularRegion? // Get region to pass back to detail view
+    var currentLocation: CLLocationCoordinate2D? // Current location for mapview
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,19 +68,11 @@ class LocationSearchController: UIViewController, UITableViewDelegate {
     
 
     
-    // MARK: - Navigation
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if searchController.isActive == true {
-           searchController.isActive = false
-        }
-        
-        let cell = dataSource.object(at: indexPath).placemark
-        updateMapsLocation(with: cell)
-    }
+
 
 }
 
-// Permissions
+//MARK: Location Permissions / authorization
 extension LocationSearchController: LocationPermissionsDelegate {
     
     //Request permission
@@ -114,13 +110,13 @@ extension LocationSearchController: LocationPermissionsDelegate {
     
     
 }
-//MARK: Location and maps
+//MARK: Location and maps setting
 extension LocationSearchController: LocationManagerDelegate, MKMapViewDelegate {
     func obtainedCoordinates(_ location: CLLocation) {
         let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
         let region = MKCoordinateRegion(center: location.coordinate, span: span)
         mapView.setRegion(region, animated: true)
-        tempLocation = location.coordinate
+        currentLocation = location.coordinate
     }
     
     func failedWithError(_ error: LocationError) {
@@ -137,9 +133,13 @@ extension LocationSearchController: LocationManagerDelegate, MKMapViewDelegate {
         
         // Generating a circular region
         let region = CLCircularRegion(center: coordinate, radius: 50, identifier: "geofence")
+        
         mapView.removeOverlays(mapView.overlays)
         let circle = MKCircle(center: coordinate, radius: region.radius)
         mapView.add(circle)
+        
+        // Update class location properties
+        
     }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
@@ -154,7 +154,7 @@ extension LocationSearchController: LocationManagerDelegate, MKMapViewDelegate {
  
     
 }
-// Search
+// MARK: Search bar and table results
 
 extension LocationSearchController: UISearchResultsUpdating, UISearchBarDelegate {
     
@@ -176,11 +176,12 @@ extension LocationSearchController: UISearchResultsUpdating, UISearchBarDelegate
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         if isAuthorized {
-            client.search(withTerm: searchText, at: tempLocation!) { (mapItems, error) in
+            client.search(withTerm: searchText, at: currentLocation!) { (mapItems, error) in
                 // IF there is no internet connection this error notice is triggered, note though the apple map kit takes too long to bring back this error so would need to inhance this so error came abck quicker in a production app.
                 if let searchError = error  {
-                    self.searchController.isActive = false
-                    self.showAlert(title: "Error searching", message: "Unable to retrive search data, please check you ahve an internet conenction")
+                    //self.searchController.isActive = false
+                    //self.showAlert(title: "Error searching", message: "Unable to retrive search data, please check you ahve an internet conenction")
+                    print("Error restriving search data: \(error)")
                     return
                 }
                 self.dataSource.update(with: mapItems)
@@ -191,10 +192,19 @@ extension LocationSearchController: UISearchResultsUpdating, UISearchBarDelegate
             searchController.isActive = false
             showAlertApplicationSettings(forErorType: .unknownError)
         }
-        
-        
+    
     }
     
+    // Table cell clicked, update map
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Deativates searh controller so that tableview cells are clickable
+        if searchController.isActive == true {
+            searchController.isActive = false
+        }
+        
+        let cell = dataSource.object(at: indexPath).placemark
+        updateMapsLocation(with: cell)
+    }
     
 }
 

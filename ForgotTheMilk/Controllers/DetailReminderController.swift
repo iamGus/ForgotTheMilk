@@ -10,6 +10,7 @@
 import UIKit
 import MapKit
 import CoreData
+import CoreLocation
 
 
 class DetailReminderController: UIViewController {
@@ -23,7 +24,12 @@ class DetailReminderController: UIViewController {
     // Properties
     var managedObjectContext: NSManagedObjectContext!
     var currentReminder: Reminder? // If viewing current reminder master VC dependency injection
-    var locationData: (location: CLLocation?, placemark:String?) // Store placemark data from location VC
+    
+    // Store Region and location data
+    var locationCoordinates: CLLocation?
+    var locationPlacemark: String?
+    var reminderRegion: CLCircularRegion? // Passed from LocationsSearchController
+    
         // Check if notes field has text
         var notesHasText: String? {
             if notesTextView.text == "Enter extra notes here" {
@@ -34,6 +40,7 @@ class DetailReminderController: UIViewController {
                 return notesTextView.text
             }
         }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,8 +74,12 @@ class DetailReminderController: UIViewController {
                 notesTextView.text = textView
             }
             
+            //Checks on if lcoationcoordinates has data, if it does then update button and show on map.
             
-            locationData = (currentReminder.retreiveLocation, currentReminder.placeMarkString)
+            print(currentReminder.objectID.uriRepresentation())
+            
+            locationCoordinates = currentReminder.retreiveLocation
+            locationPlacemark = currentReminder.placeMarkString
             
         } else {
             // Must be a new reminder
