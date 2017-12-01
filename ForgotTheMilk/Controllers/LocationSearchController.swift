@@ -78,7 +78,7 @@ class LocationSearchController: UIViewController, UITableViewDelegate {
         }
         
         delegate?.saveSucceeded(locationData: selectedPlaceholder)
-        
+        self.navigationController?.popViewController(animated: true)
         
     }
     

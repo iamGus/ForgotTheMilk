@@ -103,30 +103,47 @@ class DetailReminderController: UIViewController, LocationSearchDelegate {
         
         // If there is data in current Entry property then we are editing an existing entry
         if currentReminder != nil {
-            let tempLocation = CLLocation()
-            
-            let updateReminder: Reminder? = Reminder.updateReminder(currentReminder: currentReminder!, title: titleText, location: tempLocation, notes: notesHasText, placemark: "Temp placemark")
-            currentReminder = updateReminder
-            
-            
-        } else { // Else it must be a new entry
             guard let locationData = remindersLocationData else {
                 // No location data, you must first choose a location befoer you can save
                 showAlert(title: "Cannot save reminder", message: "You have not chosen a location yet, please first choose a location before saving")
                 return
             }
             
-            // If users has chosen a new location to replace current one for this Reminder then save this lcoation
+            // If data in region, this means a new lcoation has been chosen, update location reminder
             if locationData.locationRegion != nil {
-                // add new lcoation data for this entry
-                print("New location!")
+                //Update CoreLocation
+                print("update corelocation")
             }
             
-            guard let newReminder = Reminder.insertNewReminder(in: managedObjectContext, title: titleText, location: locationData.locationCoordinates, notes: notesHasText, placemark: locationData.locationPlacemark) else { return }
+            let updateReminder: Reminder? = Reminder.updateReminder(currentReminder: currentReminder!, title: titleText, location: locationData.locationCoordinates, notes: notesHasText, placemark: locationData.locationPlacemark)
+            currentReminder = updateReminder
+            
+            managedObjectContext.saveChanges()
+            
+        } else { // Else it must be a new entry
+            guard let locationData = remindersLocationData, let locationRegion = locationData.locationRegion else {
+                // No location data, you must first choose a location befoer you can save
+                showAlert(title: "Cannot save reminder", message: "You have not chosen a location yet, please first choose a location before saving")
+                return
+            }
+            
+            
+            guard let newReminder = Reminder.insertNewReminder(in: managedObjectContext, title: titleText, location: locationData.locationCoordinates, notes: notesHasText, placemark: locationData.locationPlacemark) else {
+                
+                    showAlert(title: "Save Error", message: "Sorry could not save reminder, please try again")
+                    return
+                }
+            
+            // Need to save changes to manged object now so can get corerct saved ID
+            print(newReminder.objectID)
+            managedObjectContext.saveChanges()
+            
+            // NOW SET CORELOCATION
+            print(newReminder.objectID)
             
         }
         
-        managedObjectContext.saveChanges()
+        //managedObjectContext.saveChanges()
         self.navigationController?.popViewController(animated: true)
         
     }
