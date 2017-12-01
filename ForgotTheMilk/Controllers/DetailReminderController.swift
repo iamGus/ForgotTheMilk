@@ -24,6 +24,7 @@ class DetailReminderController: UIViewController, LocationSearchDelegate {
     // Properties
     var managedObjectContext: NSManagedObjectContext!
     var currentReminder: Reminder? // If viewing current reminder master VC dependency injection
+    var locationManager = LocationManager(delegate: nil, permissionsDelegate: nil)
     
     // Store Region and location data
     var remindersLocationData: LocationData? // Passed from LocationsSearchController
@@ -135,12 +136,20 @@ class DetailReminderController: UIViewController, LocationSearchDelegate {
                 }
             
             // Need to save changes to manged object now so can get corerct saved ID
-            print(newReminder.objectID)
             managedObjectContext.saveChanges()
             
-            // NOW SET CORELOCATION
-            print(newReminder.objectID)
+           
             
+            // NOW SET CORELOCATION
+            do {
+                try locationManager.addMonitoringOfReminder(region: locationRegion, objectID: newReminder.objectID)
+            } catch AddLocationMonitoringError.notSupported {
+                showAlert(title: "Save Error", message: "Sorry but your device does not support lcoation monitoring, you can save reminders but your device will not alert you.")
+            } catch AddLocationMonitoringError.permissionNotAlways {
+                showAlertApplicationSettings(forErorType: .setToWhenInUse)
+            } catch {
+                
+            }
             
         }
         

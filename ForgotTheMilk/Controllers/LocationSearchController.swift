@@ -42,6 +42,7 @@ class LocationSearchController: UIViewController, UITableViewDelegate {
     // Location properties
     var selectedPlacemarkData: LocationData?
     var currentLocation: CLLocationCoordinate2D? // Current location for mapview
+    var segmentState: NotifyOn = .notifyOnEntry
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,18 +73,40 @@ class LocationSearchController: UIViewController, UITableViewDelegate {
 
     @IBAction func saveLocation(_ sender: Any) {
         
-        guard let selectedPlaceholder = selectedPlacemarkData, (selectedPlaceholder.locationRegion != nil) else {
+        guard let selectedPlacemark = selectedPlacemarkData, (selectedPlacemark.locationRegion != nil) else {
             showAlert(title: "Cannot Save", message: "You have not selected any location, cannot save")
             return
         }
         
-        delegate?.saveSucceeded(locationData: selectedPlaceholder)
+        // Set when to alert - arriving or departing
+        switch segmentState {
+        case .notifyOnEntry:
+            selectedPlacemark.locationRegion?.notifyOnEntry = true
+            selectedPlacemark.locationRegion?.notifyOnExit = false
+            selectedPlacemark.notifyOnEntry = .notifyOnEntry
+        case .notifyOnExit:
+            print("laaaaaa")
+            selectedPlacemark.locationRegion?.notifyOnEntry = false
+            selectedPlacemark.locationRegion?.notifyOnExit = true
+            selectedPlacemark.notifyOnEntry = .notifyOnExit
+        }
+        
+        delegate?.saveSucceeded(locationData: selectedPlacemark)
         self.navigationController?.popViewController(animated: true)
         
     }
     
 
-
+    @IBAction func segmentIndexChanged(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0: segmentState = .notifyOnEntry
+        case 1: segmentState = .notifyOnExit
+        default: return
+        }
+    }
+    
+    
+    
 }
 
 //MARK: Location Permissions / authorization

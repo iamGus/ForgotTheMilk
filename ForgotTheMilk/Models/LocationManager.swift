@@ -53,6 +53,8 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         
     }
     
+    
+    
     static var isAuthorized: Bool {
         switch CLLocationManager.authorizationStatus() {
         case .authorizedAlways: return true
@@ -132,7 +134,6 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         }
         region.notifyOnEntry = passedRegion.notifyOnEntry
         region.notifyOnExit = passedRegion.notifyOnExit
-        
         manager.startMonitoring(for: region)
     }
     

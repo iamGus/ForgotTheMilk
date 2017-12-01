@@ -265,6 +265,9 @@
                                             <segment title="Departing"/>
                                         </segments>
                                         <color key="tintColor" red="0.54609554339999999" green="0.78020948170000004" blue="0.94889563320000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="segmentIndexChanged:" destination="qTs-rA-8PG" eventType="valueChanged" id="Rcu-Us-Hev"/>
+                                        </connections>
                                     </segmentedControl>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
