@@ -177,6 +177,7 @@
                         <viewLayoutGuide key="safeArea" id="YPZ-12-b6y"/>
                     </view>
                     <navigationItem key="navigationItem" id="Hrr-q4-K51">
+                        <barButtonItem key="backBarButtonItem" title="Cancel" id="eAj-yv-0uC"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="LcE-ly-yZB">
                             <connections>
                                 <action selector="save:" destination="t2a-uf-bLy" id="qh1-Fa-aTf"/>
@@ -295,6 +296,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="IxQ-SI-Qas"/>
                     </view>
+                    <navigationItem key="navigationItem" id="5aV-UW-Xk4">
+                        <barButtonItem key="rightBarButtonItem" title="Save Location" id="hMf-ZF-a2v">
+                            <connections>
+                                <action selector="saveLocation:" destination="qTs-rA-8PG" id="NGd-0Q-dhA"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="LPt-gk-VSL" id="GUE-OI-N4d"/>
                         <outlet property="searchViewContainer" destination="UMh-ev-HkA" id="W4F-nG-URS"/>

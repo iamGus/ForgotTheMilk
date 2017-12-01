@@ -67,6 +67,8 @@ class LocationSearchController: UIViewController, UITableViewDelegate {
     }
     
 
+    @IBAction func saveLocation(_ sender: Any) {
+    }
     
 
 
@@ -138,8 +140,11 @@ extension LocationSearchController: LocationManagerDelegate, MKMapViewDelegate {
         let circle = MKCircle(center: coordinate, radius: region.radius)
         mapView.add(circle)
         
-        // Update class location properties
-        
+        // Update class location properties NOTE: Update this to be an init of a LocationData type
+        let locationCoordinates = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        self.locationCoordinates = locationCoordinates
+        self.locationPlacemark = dataSource.parseAddress(from: placemark)
+        self.reminderRegion = region
     }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
