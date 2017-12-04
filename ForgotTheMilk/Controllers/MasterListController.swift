@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 
+
 class MasterListController: UITableViewController {
     
     
@@ -23,6 +24,8 @@ class MasterListController: UITableViewController {
         
         tableView.rowHeight = 120
         tableView.dataSource = dataSource
+       
+        
     }
 
     override func viewDidAppear(_ animated: Bool) {
