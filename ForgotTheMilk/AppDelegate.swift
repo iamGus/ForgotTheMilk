@@ -13,6 +13,7 @@ import UserNotifications
 
 protocol NotificationFromAppDelegate: class {
     func updateTableView()
+    func updateContext()
 }
 
 @UIApplicationMain
@@ -21,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     let locationManager = CLLocationManager()
+    var managedObjectContext: NSManagedObjectContext?
     
     weak var mainVCDelegate: NotificationFromAppDelegate?
 
@@ -94,7 +96,10 @@ extension AppDelegate: CLLocationManagerDelegate {
         
         // Getting referance from the managed object context from masterListController which is the creator of the managedObjectContext
         let masterListController = UIApplication.shared.windows[0].rootViewController?.childViewControllers[0] as? MasterListController
-        guard let managedObjectContext = masterListController?.managedObjectContext else {
+        
+        mainVCDelegate?.updateContext()
+        
+        guard let managedObjectContext = managedObjectContext else {
             print("getting managedObject return nil")
             return nil
         }
@@ -113,6 +118,7 @@ extension AppDelegate: CLLocationManagerDelegate {
             // Set reminder to deactivated
             reminder?.isActive = true
             managedObjectContext.saveChanges()
+            //managedObjectContext.saveChanges()
             mainVCDelegate?.updateTableView()
             return reminder
             

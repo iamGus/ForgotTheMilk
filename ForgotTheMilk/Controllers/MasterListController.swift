@@ -23,6 +23,7 @@ class MasterListController: UITableViewController {
         super.viewDidLoad()
         
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appDelegate.managedObjectContext = managedObjectContext
             appDelegate.mainVCDelegate = self
         }
         
@@ -83,7 +84,14 @@ extension MasterListController {
 }
 
 extension MasterListController: NotificationFromAppDelegate {
+    func updateContext() {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appDelegate.managedObjectContext = managedObjectContext
+        }
+    }
+    
     func updateTableView() {
+            dataSource.fetchedResultsController.tryFetch()
             tableView.reloadData()
             print("tableview updated")
     }

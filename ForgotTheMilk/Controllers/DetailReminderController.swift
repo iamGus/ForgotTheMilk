@@ -72,7 +72,7 @@ class DetailReminderController: UIViewController, LocationSearchDelegate {
             if let textView = currentReminder.notesString {
                 notesTextView.text = textView
             }
-            
+            print("is active: \(currentReminder.isActive)")
             //Checks on if lcoationcoordinates has data, if it does then update button and show on map.
             
             print(currentReminder.objectID.uriRepresentation())
