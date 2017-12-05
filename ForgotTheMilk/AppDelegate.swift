@@ -91,20 +91,22 @@ extension AppDelegate: CLLocationManagerDelegate {
         }
     }
     
-    /// Restrive reminder from Core Data
+    /// Restrive reminder from Core Data, returns nil if error
     func getReminder(fromRegionIdentifier identifier: String) -> Reminder? {
         
         // Getting referance from the managed object context from masterListController which is the creator of the managedObjectContext
-        let masterListController = UIApplication.shared.windows[0].rootViewController?.childViewControllers[0] as? MasterListController
+       // let masterListController = UIApplication.shared.windows[0].rootViewController?.childViewControllers[0] as? MasterListController
         
+        // Gets context from main VC
         mainVCDelegate?.updateContext()
         
+        // Checks dependecy injection worked before using context
         guard let managedObjectContext = managedObjectContext else {
             print("getting managedObject return nil")
             return nil
         }
         
-        
+        // Turn the object URL into an objectID
         guard let objectIDURL = URL(string: identifier), let objectID = managedObjectContext.persistentStoreCoordinator?.managedObjectID(forURIRepresentation: objectIDURL) else {
                 // could not get Object ID Error
                 print("getting onject id from url to object nil error")
@@ -115,11 +117,7 @@ extension AppDelegate: CLLocationManagerDelegate {
             var reminder = try managedObjectContext.existingObject(with: objectID) as? Reminder
             print("got reminder")
             
-            // Set reminder to deactivated
-            reminder?.isActive = true
-            managedObjectContext.saveChanges()
-            //managedObjectContext.saveChanges()
-            mainVCDelegate?.updateTableView()
+           
             return reminder
             
         } catch let error {
@@ -139,6 +137,17 @@ extension AppDelegate: CLLocationManagerDelegate {
         notifyUser(title: reminder.titleString, subtitle: "Reminder has been triggered", notes: reminder.notesString)
        
         
+    }
+    
+    func updateRemindersState(reminder: Reminder) {
+        
+        
+        
+        // Set reminder to deactivated
+        reminder.isActive = true
+        managedObjectContext?.saveChanges()
+        //managedObjectContext.saveChanges()
+        mainVCDelegate?.updateTableView()
     }
     
     func notifyUser(title: String, subtitle: String, notes: String?) {

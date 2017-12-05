@@ -75,9 +75,20 @@ class DetailReminderController: UIViewController, LocationSearchDelegate {
             print("is active: \(currentReminder.isActive)")
             //Checks on if lcoationcoordinates has data, if it does then update button and show on map.
             
-            print(currentReminder.objectID.uriRepresentation())
-            
             remindersLocationData = LocationData(coordinates: currentReminder.retreiveLocation, placemark: currentReminder.placeMarkString)
+            
+            // Updating mapview
+            
+            
+            
+            if let coordinate = remindersLocationData?.location2d {
+                let annotation = MKPointAnnotation()
+                mapView.zoomToUserLocation(coordinate: coordinate)
+                print(coordinate.latitude)
+                print(coordinate.longitude)
+        
+            }
+            
             
         } else {
             // Must be a new reminder

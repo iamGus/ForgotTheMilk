@@ -20,18 +20,23 @@ class LocationData {
     var locationPlacemark: String
     var locationRegion: CLCircularRegion?
     var notifyOnEntry: NotifyOn = .notifyOnEntry
+    var location2d: CLLocationCoordinate2D?
     
     // New entry init
     init(coordinates: CLLocationCoordinate2D, placemark: MKPlacemark, region: CLCircularRegion) {
         self.locationCoordinates = CLLocation(latitude: coordinates.latitude, longitude: coordinates.longitude)
         self.locationPlacemark = Utilities.parseAddress(from: placemark)
         self.locationRegion = region
+        self.location2d = coordinates
     }
     
     // Exisiting entry init
     init(coordinates: CLLocation, placemark: String) {
         self.locationCoordinates = coordinates
         self.locationPlacemark = placemark
+        self.location2d = CLLocationCoordinate2D(latitude: coordinates.coordinate.latitude, longitude: coordinates.coordinate.longitude)
     }
+    
+   
 }
 

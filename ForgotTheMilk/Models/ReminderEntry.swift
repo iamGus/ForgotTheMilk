@@ -54,6 +54,7 @@ extension Reminder {
         // store CLLocation
         let archivedLocation = NSKeyedArchiver.archivedData(withRootObject: location)
         reminder.setValue(archivedLocation, forKey: "location")
+        print("data description: \(reminder.location.description)")
         
         reminder.title = title as NSString
         reminder.placeMark = placemark as NSString
@@ -74,6 +75,7 @@ extension Reminder {
         // store CLLocation
         let archivedLocation = NSKeyedArchiver.archivedData(withRootObject: location)
         reminder.setValue(archivedLocation, forKey: "location")
+        print("data description: \(reminder.location.description)")
         
         if let notes = notes {
             reminder.notes = notes as NSString
@@ -105,7 +107,10 @@ extension Reminder {
 // Restrive location
     var retreiveLocation: CLLocation {
         //return NSKeyedUnarchiver.unarchiveObject(with: location as NSData) as CLLocation
-        return CLLocation(coder: NSKeyedUnarchiver(forReadingWith: location as Data))!
+        
+        let data = NSKeyedUnarchiver.unarchiveObject(with: self.location as Data) as! CLLocation
+        return data
+        
     }
 }
 

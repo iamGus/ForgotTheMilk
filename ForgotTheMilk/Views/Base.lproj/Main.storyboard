@@ -157,21 +157,44 @@
                                 </connections>
                             </button>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="pxZ-Qx-5jc">
-                                <rect key="frame" x="0.0" y="250" width="375" height="417"/>
+                                <rect key="frame" x="0.0" y="284" width="375" height="383"/>
                             </mapView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="bue-Hl-g68">
+                                <rect key="frame" x="158" y="246" width="209" height="29"/>
+                                <segments>
+                                    <segment title="Recurring"/>
+                                    <segment title="Once only"/>
+                                </segments>
+                                <color key="tintColor" red="0.54609554339999999" green="0.78020948170000004" blue="0.94889563320000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set reminder as:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3In-bk-mwF">
+                                <rect key="frame" x="16" y="250" width="134" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="k9n-dT-Wgo"/>
+                                    <constraint firstAttribute="width" constant="134" id="ybN-VK-GdI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="upS-WI-7dX" firstAttribute="centerY" secondItem="snV-zh-EdG" secondAttribute="centerY" id="2uD-MX-xpM"/>
                             <constraint firstItem="pxZ-Qx-5jc" firstAttribute="trailing" secondItem="YPZ-12-b6y" secondAttribute="trailing" id="6k2-QX-ekX"/>
                             <constraint firstItem="YPZ-12-b6y" firstAttribute="trailing" secondItem="HFG-LU-vUH" secondAttribute="trailing" id="7XI-0K-rVR"/>
+                            <constraint firstItem="3In-bk-mwF" firstAttribute="top" secondItem="snV-zh-EdG" secondAttribute="bottom" constant="8" id="84c-wL-4V6"/>
                             <constraint firstItem="upS-WI-7dX" firstAttribute="leading" secondItem="snV-zh-EdG" secondAttribute="trailing" constant="8" id="EVU-0W-wju"/>
+                            <constraint firstItem="pxZ-Qx-5jc" firstAttribute="top" secondItem="bue-Hl-g68" secondAttribute="bottom" constant="10" id="J2a-M2-BLg"/>
                             <constraint firstItem="pxZ-Qx-5jc" firstAttribute="bottom" secondItem="YPZ-12-b6y" secondAttribute="bottom" id="Pt6-gw-MaK"/>
                             <constraint firstItem="snV-zh-EdG" firstAttribute="top" secondItem="HFG-LU-vUH" secondAttribute="bottom" constant="8" id="T9p-yc-bzT"/>
+                            <constraint firstItem="bue-Hl-g68" firstAttribute="centerY" secondItem="3In-bk-mwF" secondAttribute="centerY" id="WdB-9n-RCd"/>
                             <constraint firstItem="snV-zh-EdG" firstAttribute="leading" secondItem="YPZ-12-b6y" secondAttribute="leading" constant="16" id="bkL-QX-MaS"/>
                             <constraint firstItem="HFG-LU-vUH" firstAttribute="top" secondItem="YPZ-12-b6y" secondAttribute="top" id="e6V-ZF-7ao"/>
+                            <constraint firstItem="3In-bk-mwF" firstAttribute="leading" secondItem="snV-zh-EdG" secondAttribute="leading" id="eFX-4t-Ofm"/>
+                            <constraint firstItem="bue-Hl-g68" firstAttribute="leading" secondItem="3In-bk-mwF" secondAttribute="trailing" constant="8" id="mCu-A4-3jJ"/>
                             <constraint firstItem="pxZ-Qx-5jc" firstAttribute="leading" secondItem="YPZ-12-b6y" secondAttribute="leading" id="rbB-dd-B0J"/>
-                            <constraint firstItem="pxZ-Qx-5jc" firstAttribute="top" secondItem="snV-zh-EdG" secondAttribute="bottom" constant="8" id="tNx-ld-VcR"/>
+                            <constraint firstItem="YPZ-12-b6y" firstAttribute="trailing" secondItem="bue-Hl-g68" secondAttribute="trailing" constant="8" id="ue5-dF-UU1"/>
                             <constraint firstItem="HFG-LU-vUH" firstAttribute="leading" secondItem="YPZ-12-b6y" secondAttribute="leading" id="wGD-j3-ydz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="YPZ-12-b6y"/>
@@ -253,12 +276,12 @@
                                 <rect key="frame" x="0.0" y="427" width="375" height="40"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alert me when:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wJi-gN-2vI">
-                                        <rect key="frame" x="8" y="9" width="116" height="21"/>
+                                        <rect key="frame" x="0.0" y="9" width="116" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="qiy-Nl-mtP">
-                                        <rect key="frame" x="134" y="6" width="231" height="29"/>
+                                        <rect key="frame" x="116" y="6" width="231" height="29"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <segments>
                                             <segment title="Arriving"/>
