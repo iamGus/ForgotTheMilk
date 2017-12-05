@@ -20,7 +20,8 @@ class LocationSearchController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var mapView: MKMapView!
     
     @IBOutlet weak var searchViewContainer: UIView!
-    @IBOutlet weak var segmentControl: NSLayoutConstraint!
+    @IBOutlet weak var segmentControl: UISegmentedControl!
+    
     
     
     lazy var locationManager: LocationManager = {
@@ -52,6 +53,27 @@ class LocationSearchController: UIViewController, UITableViewDelegate {
         
         // Setup search bar
         configureSearchController()
+        
+        // If not nil then current location data passed from detail VC
+        if let selectedPlacemark = selectedPlacemarkData {
+            
+            if let coordinates = selectedPlacemark.location2d {
+                let placemark = MKPlacemark(coordinate: coordinates)
+                updateMapsLocation(with: placemark)
+            }
+       
+            
+        
+            
+            // Check if recurring segmentState needs updated
+            if selectedPlacemark.notifyOnEntry == .notifyOnEntry {
+                segmentControl.selectedSegmentIndex = 0
+            } else {
+                segmentControl.selectedSegmentIndex = 1
+            }
+        }
+        
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -150,10 +172,15 @@ extension LocationSearchController: LocationPermissionsDelegate {
 //MARK: Location and maps setting
 extension LocationSearchController: LocationManagerDelegate, MKMapViewDelegate {
     func obtainedCoordinates(_ location: CLLocation) {
+        // If there is already location data from detail view then only update curent location property otherwise display current location on map
+        if selectedPlacemarkData != nil {
+            currentLocation = location.coordinate
+        } else {
         let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
         let region = MKCoordinateRegion(center: location.coordinate, span: span)
         mapView.setRegion(region, animated: true)
         currentLocation = location.coordinate
+        }
     }
     
     func failedWithError(_ error: LocationError) {
@@ -161,7 +188,7 @@ extension LocationSearchController: LocationManagerDelegate, MKMapViewDelegate {
     }
     
     func updateMapsLocation(with placemark: MKPlacemark) {
-        //selectedPin = placemark
+        
         mapView.annotations.flatMap { mapView.removeAnnotation($0) } // remove any previous placemark on map
         let annotation = MKPointAnnotation()
         let coordinate = placemark.coordinate

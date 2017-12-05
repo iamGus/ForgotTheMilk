@@ -143,7 +143,7 @@ class DetailReminderController: UIViewController, LocationSearchDelegate {
             }
             
             
-            guard let newReminder = Reminder.insertNewReminder(in: managedObjectContext, title: titleText, location: locationData.locationCoordinates, notes: notesHasText, placemark: locationData.locationPlacemark) else {
+            guard let newReminder = Reminder.insertNewReminder(in: managedObjectContext, title: titleText, location: locationData.locationCoordinates, notes: notesHasText, placemark: locationData.locationPlacemark, recurring: locationData.recurring, notifyOn: locationData.notifyOnEntry) else {
                 
                     showAlert(title: "Save Error", message: "Sorry could not save reminder, please try again")
                     return
@@ -176,8 +176,14 @@ class DetailReminderController: UIViewController, LocationSearchDelegate {
     // Setup DetailVC delegate
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showLocation" {
-            let newReminderController = segue.destination as! LocationSearchController
-            newReminderController.delegate = self
+            let locationSearchController = segue.destination as! LocationSearchController
+            locationSearchController.delegate = self
+            
+            // If the user is viewing a existing entry or if the user is on a new entry but they have already chosen a lcoation but deciding to go abck and edit / change it
+            
+            if let locationData = remindersLocationData {
+                locationSearchController.selectedPlacemarkData = locationData
+            }
         }
     }
     

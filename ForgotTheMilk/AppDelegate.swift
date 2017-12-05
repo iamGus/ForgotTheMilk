@@ -147,10 +147,14 @@ extension AppDelegate: CLLocationManagerDelegate {
         
         // Set reminder to deactivated
         var reminder = reminder
-        reminder.isActive = true
-        managedObjectContext.saveChanges()
-        //managedObjectContext.saveChanges()
-        mainVCDelegate?.updateTableView()
+        if reminder.recurringStatus == .onceonly {
+            reminder.isActive = false
+            //NOTE add remove notification method call here
+            managedObjectContext.saveChanges()
+            //managedObjectContext.saveChanges()
+            mainVCDelegate?.updateTableView()
+        }
+        
     }
     
     func notifyUser(title: String, subtitle: String, notes: String?) {

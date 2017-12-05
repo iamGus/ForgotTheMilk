@@ -56,7 +56,7 @@ extension Reminder {
     }
     
     /// Use this method to create a new Reminder
-    class func insertNewReminder(in context: NSManagedObjectContext, title: String, location: CLLocation, notes: String?, placemark: String) -> Reminder? {
+    class func insertNewReminder(in context: NSManagedObjectContext, title: String, location: CLLocation, notes: String?, placemark: String, recurring: Recurring, notifyOn: NotifyOn) -> Reminder? {
         
         guard let reminder = NSEntityDescription.insertNewObject(forEntityName: Reminder.entityName, into: context) as? Reminder else { return nil }
         
@@ -67,6 +67,8 @@ extension Reminder {
         
         reminder.title = title as NSString
         reminder.placeMark = placemark as NSString
+        reminder.recurringStatus = recurring
+        reminder.notifyOnStatus = notifyOn
         
         if let notes = notes {
             reminder.notes = notes as NSString
