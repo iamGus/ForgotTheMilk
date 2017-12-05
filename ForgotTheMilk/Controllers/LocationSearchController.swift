@@ -137,8 +137,8 @@ extension LocationSearchController: LocationPermissionsDelegate {
     func authorizationFailedWithStatus(_ status: CLAuthorizationStatus) {
         // Meaning authorization is denied so ask user to allow permissions in settings
         switch status {
-        case .authorizedWhenInUse: showAlertApplicationSettings(forErorType: LocationError.setToWhenInUse)
-        default: showAlertApplicationSettings(forErorType: LocationError.disallowedByUser)
+        case .authorizedWhenInUse: showAlertApplicationSettings(forErorType: ShowAltertMessage.setToWhenInUse)
+        default: showAlertApplicationSettings(forErorType: ShowAltertMessage.notSetToAlways)
             
         }
         
@@ -229,7 +229,7 @@ extension LocationSearchController: UISearchResultsUpdating, UISearchBarDelegate
         } else {
             print("show alert")
             searchController.isActive = false
-            showAlertApplicationSettings(forErorType: .unknownError)
+            showAlertApplicationSettings(forErorType: .locationsDefault)
         }
     
     }

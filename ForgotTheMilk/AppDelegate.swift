@@ -11,12 +11,18 @@ import CoreLocation
 import CoreData
 import UserNotifications
 
+protocol NotificationFromAppDelegate: class {
+    func updateTableView()
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
     let locationManager = CLLocationManager()
+    
+    weak var mainVCDelegate: NotificationFromAppDelegate?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -25,11 +31,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Setup notifications authorization request
         let center = UNUserNotificationCenter.current()
         center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
-            // Enable or disable features based on authorization
+            // Check if granted, if not then notify user
             if granted {
                 print("Notification access granted")
             } else {
                 print(error?.localizedDescription ?? "General Error: notification access not granted")
+                self.window?.rootViewController?.showAlertApplicationSettings(forErorType: .turnOnNotifications)
             }
         }
         
@@ -65,6 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+// MARK: Location notification
 extension AppDelegate: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
@@ -81,13 +89,14 @@ extension AppDelegate: CLLocationManagerDelegate {
         }
     }
     
+    /// Restrive reminder from Core Data
     func getReminder(fromRegionIdentifier identifier: String) -> Reminder? {
         
-        // Getting the managed object conetcxt from masterListController which is teh creatrp of the managedobjectcontext
+        // Getting referance from the managed object context from masterListController which is the creator of the managedObjectContext
         let masterListController = UIApplication.shared.windows[0].rootViewController?.childViewControllers[0] as? MasterListController
         guard let managedObjectContext = masterListController?.managedObjectContext else {
             print("getting managedObject return nil")
-            return nil // ERROR HANDLING
+            return nil
         }
         
         
@@ -100,6 +109,11 @@ extension AppDelegate: CLLocationManagerDelegate {
         do {
             var reminder = try managedObjectContext.existingObject(with: objectID) as? Reminder
             print("got reminder")
+            
+            // Set reminder to deactivated
+            reminder?.isActive = true
+            managedObjectContext.saveChanges()
+            mainVCDelegate?.updateTableView()
             return reminder
             
         } catch let error {
@@ -111,21 +125,26 @@ extension AppDelegate: CLLocationManagerDelegate {
     
     func handleEvent(forRegion region: CLRegion) {
         guard let reminder = getReminder(fromRegionIdentifier: region.identifier) else {
-            return // NOTE DO I NEED BETTER ERROR HANDLING
-            print("reminder returned nil")
+            // There was a problem access the notification data, infirm user
+            notifyUser(title: "Reminder notifiction error", subtitle: "One of your notifications has just been triggered but error restriving notification data", notes: nil)
+            return
         }
         
-        print(reminder.isActive)
+        notifyUser(title: reminder.titleString, subtitle: "Reminder has been triggered", notes: reminder.notesString)
+       
         
+    }
+    
+    func notifyUser(title: String, subtitle: String, notes: String?) {
         // show an alert if applocation is active
         if UIApplication.shared.applicationState == .active {
-            window?.rootViewController?.showAlert(title: "Reminder has been triggered", message: "\(reminder.titleString)")
+            window?.rootViewController?.showAlert(title: title, message: subtitle)
         } else {
             let notification = UNMutableNotificationContent()
-            notification.title = reminder.titleString
-            notification.subtitle = "Your reminder has been triggered"
-            if reminder.notesString != nil {
-                notification.body = reminder.notesString!
+            notification.title = title
+            notification.subtitle = subtitle
+            if let notes = notes {
+                notification.body = notes
             }
             notification.sound = UNNotificationSound.default()
             let request = UNNotificationRequest(identifier: "Notification", content: notification, trigger: nil)

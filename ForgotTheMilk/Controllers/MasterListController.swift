@@ -22,6 +22,10 @@ class MasterListController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appDelegate.mainVCDelegate = self
+        }
+        
         tableView.rowHeight = 120
         tableView.dataSource = dataSource
        
@@ -76,4 +80,13 @@ extension MasterListController {
             self.tableView.viewWithTag(1)?.removeFromSuperview()
         }
     }
+}
+
+extension MasterListController: NotificationFromAppDelegate {
+    func updateTableView() {
+            tableView.reloadData()
+            print("tableview updated")
+    }
+    
+    
 }
