@@ -66,6 +66,7 @@ class DetailReminderController: UIViewController, LocationSearchDelegate {
         
         // If Current viewing current reminder
         if let currentReminder = currentReminder {
+            
             shortTitleTextfield.text = currentReminder.titleString
             locationButton.setTitle(currentReminder.placeMarkString, for: .normal)
             print(currentReminder.notes)

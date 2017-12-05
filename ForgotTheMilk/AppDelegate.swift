@@ -127,25 +127,28 @@ extension AppDelegate: CLLocationManagerDelegate {
         
     }
     
+    // try retrive inastance of the Reminder and if success then call notifyUser and updateReminderState methods
     func handleEvent(forRegion region: CLRegion) {
         guard let reminder = getReminder(fromRegionIdentifier: region.identifier) else {
-            // There was a problem access the notification data, infirm user
+            // There was a problem access the notification data, inform user
             notifyUser(title: "Reminder notifiction error", subtitle: "One of your notifications has just been triggered but error restriving notification data", notes: nil)
             return
         }
         
         notifyUser(title: reminder.titleString, subtitle: "Reminder has been triggered", notes: reminder.notesString)
-       
-        
+        updateRemindersState(reminder: reminder)
     }
     
     func updateRemindersState(reminder: Reminder) {
-        
-        
+    
+        guard let managedObjectContext = managedObjectContext else {
+            return
+        }
         
         // Set reminder to deactivated
+        var reminder = reminder
         reminder.isActive = true
-        managedObjectContext?.saveChanges()
+        managedObjectContext.saveChanges()
         //managedObjectContext.saveChanges()
         mainVCDelegate?.updateTableView()
     }

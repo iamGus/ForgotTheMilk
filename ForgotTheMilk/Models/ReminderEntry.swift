@@ -118,4 +118,14 @@ extension Reminder {
         
     }
 }
+/*
+var moodStatus: Mood {
+    get {
+        return Mood(rawValue: Int(self.mood))!
+    }
+    set {
+        self.mood = Int16(newValue.rawValue)
+    }
+}
+ */
 
