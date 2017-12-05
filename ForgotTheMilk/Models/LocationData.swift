@@ -10,7 +10,7 @@ import Foundation
 import CoreLocation
 import MapKit
 
-enum NotifyOn {
+enum NotifyOn: Int {
     case notifyOnEntry
     case notifyOnExit
 }

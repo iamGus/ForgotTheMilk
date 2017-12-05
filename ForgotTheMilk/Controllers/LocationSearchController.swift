@@ -196,6 +196,10 @@ extension LocationSearchController: LocationManagerDelegate, MKMapViewDelegate {
 // MARK: Search bar and table results
 
 extension LocationSearchController: UISearchResultsUpdating, UISearchBarDelegate {
+    func updateSearchResults(for searchController: UISearchController) {
+        
+    }
+    
     
     /// Setup search bar
     func configureSearchController() {
@@ -206,16 +210,18 @@ extension LocationSearchController: UISearchResultsUpdating, UISearchBarDelegate
         searchController.searchBar.delegate = self
         searchViewContainer.addSubview(searchController.searchBar)
     }
-    
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        print("updating")
-    }
+
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         if isAuthorized {
-            client.search(withTerm: searchText, at: currentLocation!) { (mapItems, error) in
+            guard let currentLocation = currentLocation else {
+                searchController.isActive = false
+                showAlertApplicationSettings(forErorType: .couldNotGetCoordinates)
+                return
+            }
+            
+            client.search(withTerm: searchText, at: currentLocation) { (mapItems, error) in
                 // IF there is no internet connection this error notice is triggered, note though the apple map kit takes too long to bring back this error so would need to inhance this so error came abck quicker in a production app.
                 if let searchError = error  {
                     //self.searchController.isActive = false
@@ -227,7 +233,6 @@ extension LocationSearchController: UISearchResultsUpdating, UISearchBarDelegate
                 self.tableview.reloadData()
             }
         } else {
-            print("show alert")
             searchController.isActive = false
             showAlertApplicationSettings(forErorType: .locationsDefault)
         }

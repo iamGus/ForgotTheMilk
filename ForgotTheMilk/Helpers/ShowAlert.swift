@@ -13,6 +13,7 @@ enum ShowAltertMessage: String {
     case notSetToAlways = "Sorry as your Location Permission is not set to \"Always\" the location function in this app will work"
     case turnOnNotifications = "Please turn on notifications access in settings so the app can notify you once a reminder is triggered"
     case locationsDefault = "Location permission is currently not allowed, please change in settings so app can find your location"
+    case couldNotGetCoordinates = "Sorry but unable to get your position at this time"
 }
 
 extension UIViewController {
@@ -34,6 +35,7 @@ extension UIViewController {
             case .setToWhenInUse: return ShowAltertMessage.setToWhenInUse.rawValue
             case .notSetToAlways: return ShowAltertMessage.notSetToAlways.rawValue
             case .turnOnNotifications: return ShowAltertMessage.turnOnNotifications.rawValue
+            case .couldNotGetCoordinates: return ShowAltertMessage.couldNotGetCoordinates.rawValue
             default: return ShowAltertMessage.locationsDefault.rawValue
             }
         }

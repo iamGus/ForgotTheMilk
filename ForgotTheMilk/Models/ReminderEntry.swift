@@ -10,6 +10,11 @@ import CoreData
 import UIKit
 import CoreLocation
 
+enum Recurring: Int {
+    case recurring
+    case onceonly
+}
+
 public class Reminder: NSManagedObject {
     @NSManaged public var isActive: Bool
     @NSManaged public var location: NSData

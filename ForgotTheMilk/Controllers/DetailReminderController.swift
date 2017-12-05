@@ -93,7 +93,7 @@ class DetailReminderController: UIViewController, LocationSearchDelegate {
         
         // Check textfield not empty
         guard let titleText = shortTitleTextfield.text, titleText != "" else {
-            print("fdfd")
+        
             self.showAlert(title: "Alert", message: "You cannot save an entry without text, please first enter text")
             return
         }
@@ -112,15 +112,16 @@ class DetailReminderController: UIViewController, LocationSearchDelegate {
                 return
             }
             
-            // If data in region, this means a new lcoation has been chosen, update location reminder
-            if locationData.locationRegion != nil {
-                //Update CoreLocation
-                print("update corelocation")
+            // Update reminder entry
+            let updateReminder: Reminder = Reminder.updateReminder(currentReminder: currentReminder!, title: titleText, location: locationData.locationCoordinates, notes: notesHasText, placemark: locationData.locationPlacemark)
+            
+            // If there is data in region, this means a new location has been chosen, update location reminder
+            if let locationRegion = locationData.locationRegion {
+                tryAddMonitoring(region: locationRegion, objectID: updateReminder.objectID)
             }
             
-            let updateReminder: Reminder? = Reminder.updateReminder(currentReminder: currentReminder!, title: titleText, location: locationData.locationCoordinates, notes: notesHasText, placemark: locationData.locationPlacemark)
             currentReminder = updateReminder
-            
+    
             managedObjectContext.saveChanges()
             
         } else { // Else it must be a new entry
@@ -140,18 +141,8 @@ class DetailReminderController: UIViewController, LocationSearchDelegate {
             // Need to save changes to manged object now so can get corerct saved ID
             managedObjectContext.saveChanges()
             
-           
-            
-            // NOW SET CORELOCATION
-            do {
-                try locationManager.addMonitoringOfReminder(region: locationRegion, objectID: newReminder.objectID)
-            } catch AddLocationMonitoringError.notSupported {
-                showAlert(title: "Save Error", message: "Sorry but your device does not support lcoation monitoring, you can save reminders but your device will not alert you.")
-            } catch AddLocationMonitoringError.permissionNotAlways {
-                showAlertApplicationSettings(forErorType: .setToWhenInUse)
-            } catch {
-                
-            }
+            // Set monitoring of location
+            tryAddMonitoring(region: locationRegion, objectID: newReminder.objectID)
             
         }
         
@@ -217,4 +208,21 @@ extension DetailReminderController: UITextViewDelegate {
             textView.textColor = UIColor.gray
         }
     }
+}
+
+// Location update Helper
+
+extension DetailReminderController {
+    func tryAddMonitoring(region: CLCircularRegion, objectID: NSManagedObjectID) {
+        do {
+            try locationManager.addMonitoringOfReminder(region: region, objectID: objectID)
+        } catch AddLocationMonitoringError.notSupported {
+            showAlert(title: "Save Error", message: "Sorry but your device does not support lcoation monitoring, your reminder has been saved but you will not be alerted when notification vent has been triggered")
+        } catch AddLocationMonitoringError.permissionNotAlways {
+            showAlertApplicationSettings(forErorType: .setToWhenInUse)
+        } catch {
+            print("Adding region unknown error")
+        }
+    }
+    
 }
