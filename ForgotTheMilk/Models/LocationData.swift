@@ -21,6 +21,7 @@ class LocationData {
     var locationRegion: CLCircularRegion?
     var notifyOnEntry: NotifyOn = .notifyOnEntry
     var location2d: CLLocationCoordinate2D?
+    var recurring: Recurring = .recurring
     
     // New entry init
     init(coordinates: CLLocationCoordinate2D, placemark: MKPlacemark, region: CLCircularRegion) {
@@ -28,13 +29,16 @@ class LocationData {
         self.locationPlacemark = Utilities.parseAddress(from: placemark)
         self.locationRegion = region
         self.location2d = coordinates
+        
     }
-    
+ 
     // Exisiting entry init
-    init(coordinates: CLLocation, placemark: String) {
+    init(coordinates: CLLocation, placemark: String, recurring: Recurring, notifyOn: NotifyOn) {
         self.locationCoordinates = coordinates
         self.locationPlacemark = placemark
         self.location2d = CLLocationCoordinate2D(latitude: coordinates.coordinate.latitude, longitude: coordinates.coordinate.longitude)
+        self.recurring = recurring
+        self.notifyOnEntry = notifyOn
     }
     
    

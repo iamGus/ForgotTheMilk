@@ -169,6 +169,9 @@
                                     <segment title="Once only"/>
                                 </segments>
                                 <color key="tintColor" red="0.54609554339999999" green="0.78020948170000004" blue="0.94889563320000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="recurringStateAction:" destination="t2a-uf-bLy" eventType="valueChanged" id="yCd-iO-WBR"/>
+                                </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set reminder as:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3In-bk-mwF">
                                 <rect key="frame" x="16" y="250" width="134" height="21"/>
@@ -214,6 +217,7 @@
                         <outlet property="locationButton" destination="upS-WI-7dX" id="74H-S8-yhs"/>
                         <outlet property="mapView" destination="pxZ-Qx-5jc" id="mH6-Py-U4F"/>
                         <outlet property="notesTextView" destination="kYz-Tu-DZB" id="AJq-An-dc3"/>
+                        <outlet property="recurringSegmentState" destination="bue-Hl-g68" id="kBO-b7-JfY"/>
                         <outlet property="shortTitleTextfield" destination="7Yh-1w-LlR" id="3ON-ao-3xu"/>
                     </connections>
                 </viewController>
@@ -279,12 +283,12 @@
                                 <rect key="frame" x="0.0" y="427" width="375" height="40"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alert me when:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wJi-gN-2vI">
-                                        <rect key="frame" x="8" y="9" width="116" height="21"/>
+                                        <rect key="frame" x="0.0" y="9" width="116" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="qiy-Nl-mtP">
-                                        <rect key="frame" x="134" y="6" width="231" height="29"/>
+                                        <rect key="frame" x="116" y="6" width="231" height="29"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <segments>
                                             <segment title="Arriving"/>

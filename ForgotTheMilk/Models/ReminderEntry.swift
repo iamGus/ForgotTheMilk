@@ -22,12 +22,16 @@ public class Reminder: NSManagedObject {
     @NSManaged public var timeStamp: NSDate
     @NSManaged public var title: NSString
     @NSManaged public var placeMark: NSString
+    @NSManaged public var recurringAmount: Int16
+    @NSManaged public var notify: Int16
     
     public override func awakeFromInsert() {
         
         super.awakeFromInsert()
         
         self.timeStamp = NSDate() // Set date for when entry created.
+        self.recurringAmount = 0
+        self.notify = 0
     }
 }
 
@@ -72,10 +76,12 @@ extension Reminder {
         
     }
     
-    class func updateReminder(currentReminder: Reminder, title: String, location: CLLocation, notes: String?, placemark: String) -> Reminder {
+    class func updateReminder(currentReminder: Reminder, title: String, location: CLLocation, notes: String?, placemark: String, recurring: Recurring, notifyOn: NotifyOn) -> Reminder {
         var reminder = currentReminder
         reminder.title = title as NSString
         reminder.placeMark = placemark as NSString
+        reminder.recurringStatus = recurring
+        reminder.notifyOnStatus = notifyOn
         
         // store CLLocation
         let archivedLocation = NSKeyedArchiver.archivedData(withRootObject: location)
@@ -117,15 +123,26 @@ extension Reminder {
         return data
         
     }
-}
-/*
-var moodStatus: Mood {
-    get {
-        return Mood(rawValue: Int(self.mood))!
+    
+    var recurringStatus: Recurring {
+        get {
+            return Recurring(rawValue: Int(self.recurringAmount))!
+        }
+        set {
+            self.recurringAmount = Int16(newValue.rawValue)
+        }
     }
-    set {
-        self.mood = Int16(newValue.rawValue)
+    
+    var notifyOnStatus: NotifyOn {
+        get {
+            return NotifyOn(rawValue: Int(self.notify))!
+        }
+        set {
+            self.notify = Int16(newValue.rawValue)
+        }
     }
 }
- */
+
+
+ 
 

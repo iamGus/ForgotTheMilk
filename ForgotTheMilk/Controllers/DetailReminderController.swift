@@ -20,6 +20,7 @@ class DetailReminderController: UIViewController, LocationSearchDelegate {
     @IBOutlet weak var notesTextView: UITextView!
     @IBOutlet weak var locationButton: UIButton!
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var recurringSegmentState: UISegmentedControl!
     
     // Properties
     var managedObjectContext: NSManagedObjectContext!
@@ -73,10 +74,19 @@ class DetailReminderController: UIViewController, LocationSearchDelegate {
             if let textView = currentReminder.notesString {
                 notesTextView.text = textView
             }
-            print("is active: \(currentReminder.isActive)")
-            //Checks on if lcoationcoordinates has data, if it does then update button and show on map.
             
-            remindersLocationData = LocationData(coordinates: currentReminder.retreiveLocation, placemark: currentReminder.placeMarkString)
+            // initilize location data
+            remindersLocationData = LocationData(coordinates: currentReminder.retreiveLocation, placemark: currentReminder.placeMarkString, recurring: currentReminder.recurringStatus, notifyOn: currentReminder.notifyOnStatus)
+            
+            // Check if recurring segmentState needs updated
+            if let recurring = remindersLocationData?.recurring {
+                if recurring == .recurring {
+                    recurringSegmentState.selectedSegmentIndex = 0
+                } else {
+                    recurringSegmentState.selectedSegmentIndex = 1
+                }
+            }
+            
             
             // Updating mapview
             setupMapView(coordinate: remindersLocationData?.location2d)
@@ -114,7 +124,7 @@ class DetailReminderController: UIViewController, LocationSearchDelegate {
             }
             
             // Update reminder entry
-            let updateReminder: Reminder = Reminder.updateReminder(currentReminder: currentReminder!, title: titleText, location: locationData.locationCoordinates, notes: notesHasText, placemark: locationData.locationPlacemark)
+            let updateReminder: Reminder = Reminder.updateReminder(currentReminder: currentReminder!, title: titleText, location: locationData.locationCoordinates, notes: notesHasText, placemark: locationData.locationPlacemark, recurring: locationData.recurring, notifyOn: locationData.notifyOnEntry)
             
             // If there is data in region, this means a new location has been chosen, update location reminder
             if let locationRegion = locationData.locationRegion {
@@ -152,6 +162,15 @@ class DetailReminderController: UIViewController, LocationSearchDelegate {
         
     }
     
+    @IBAction func recurringStateAction(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0: remindersLocationData?.recurring = .recurring
+        case 1: remindersLocationData?.recurring = .onceonly
+        default: return
+        }
+    }
+    
+    
     // MARK: Navigation
     
     // Setup DetailVC delegate
@@ -164,7 +183,14 @@ class DetailReminderController: UIViewController, LocationSearchDelegate {
     
     // Once get locationData back from Location VC update location data
     func saveSucceeded(locationData: LocationData) {
+        
+        // The user may have already set the recurring option so store this tempory and then put back in
+        guard let recurringData = remindersLocationData?.recurring else {
+            remindersLocationData = locationData
+            return
+        }
         remindersLocationData = locationData
+        remindersLocationData?.recurring = recurringData
     }
     
 }
