@@ -78,16 +78,7 @@ class DetailReminderController: UIViewController, LocationSearchDelegate {
             remindersLocationData = LocationData(coordinates: currentReminder.retreiveLocation, placemark: currentReminder.placeMarkString)
             
             // Updating mapview
-            
-            
-            
-            if let coordinate = remindersLocationData?.location2d {
-                let annotation = MKPointAnnotation()
-                mapView.zoomToUserLocation(coordinate: coordinate)
-                print(coordinate.latitude)
-                print(coordinate.longitude)
-        
-            }
+            setupMapView(coordinate: remindersLocationData?.location2d)
             
             
         } else {

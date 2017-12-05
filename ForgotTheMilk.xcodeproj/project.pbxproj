@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		18012D7C1FD202A4008F264B /* TestLocations.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 18012D7B1FD202A4008F264B /* TestLocations.gpx */; };
+		181362FF1FD6C71600FF9FA1 /* MapViewOnDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181362FE1FD6C71600FF9FA1 /* MapViewOnDetail.swift */; };
 		1852EA151FCF0D6600EE330E /* LocalSearchAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1852EA141FCF0D6600EE330E /* LocalSearchAPI.swift */; };
 		1852EA171FCF279000EE330E /* LocationSearchDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1852EA161FCF279000EE330E /* LocationSearchDataSource.swift */; };
 		188B334F1FD165D7007B7453 /* LocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188B334E1FD165D7007B7453 /* LocationData.swift */; };
@@ -45,6 +46,7 @@
 
 /* Begin PBXFileReference section */
 		18012D7B1FD202A4008F264B /* TestLocations.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TestLocations.gpx; sourceTree = "<group>"; };
+		181362FE1FD6C71600FF9FA1 /* MapViewOnDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewOnDetail.swift; sourceTree = "<group>"; };
 		1852EA141FCF0D6600EE330E /* LocalSearchAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalSearchAPI.swift; sourceTree = "<group>"; };
 		1852EA161FCF279000EE330E /* LocationSearchDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchDataSource.swift; sourceTree = "<group>"; };
 		188B334E1FD165D7007B7453 /* LocationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationData.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 				18CF5F301FD00BDD00596B68 /* ParseAddress.swift */,
 				18CF5F321FD04B0800596B68 /* Utilities.swift */,
 				18012D7B1FD202A4008F264B /* TestLocations.gpx */,
+				181362FE1FD6C71600FF9FA1 /* MapViewOnDetail.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -303,6 +306,7 @@
 				18CF5F331FD04B0800596B68 /* Utilities.swift in Sources */,
 				18D474D91FCD547D0004830E /* AppDelegate.swift in Sources */,
 				18D475061FCD60D50004830E /* ReminderEntry.swift in Sources */,
+				181362FF1FD6C71600FF9FA1 /* MapViewOnDetail.swift in Sources */,
 				18DD997D1FCED6210016F485 /* Coordinate.swift in Sources */,
 				18DD997B1FCED2D20016F485 /* LocationSearchController.swift in Sources */,
 				18D475001FCD58D80004830E /* ReminderCell.swift in Sources */,
