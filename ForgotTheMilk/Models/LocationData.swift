@@ -39,6 +39,9 @@ class LocationData {
         self.location2d = CLLocationCoordinate2D(latitude: coordinates.coordinate.latitude, longitude: coordinates.coordinate.longitude)
         self.recurring = recurring
         self.notifyOnEntry = notifyOn
+        self.locationRegion = CLCircularRegion(center: CLLocationCoordinate2D(latitude: coordinates.coordinate.latitude, longitude: coordinates.coordinate.longitude), radius: 50, identifier: "tempory")
+        
+        //can I create a location region here?
     }
     
    

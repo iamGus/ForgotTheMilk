@@ -31,7 +31,7 @@
                                             <rect key="frame" x="16" y="11" width="313" height="60"/>
                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="50"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
+                                            <color key="highlightedColor" red="0.47843137254901957" green="0.80784313725490198" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location_icon" translatesAutoresizingMaskIntoConstraints="NO" id="dQc-cl-mLy">
                                             <rect key="frame" x="16" y="79" width="30" height="30"/>

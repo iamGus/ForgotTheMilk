@@ -58,18 +58,16 @@ class LocationSearchController: UIViewController, UITableViewDelegate {
         if let selectedPlacemark = selectedPlacemarkData {
             
             if let coordinates = selectedPlacemark.location2d {
-                let placemark = MKPlacemark(coordinate: coordinates)
-                updateMapsLocation(with: placemark)
+                updateExistingMapsLocation(with: coordinates)
             }
        
-            
-        
-            
             // Check if recurring segmentState needs updated
             if selectedPlacemark.notifyOnEntry == .notifyOnEntry {
                 segmentControl.selectedSegmentIndex = 0
+                segmentState = .notifyOnEntry
             } else {
                 segmentControl.selectedSegmentIndex = 1
+                segmentState = .notifyOnExit
             }
         }
         
@@ -94,6 +92,7 @@ class LocationSearchController: UIViewController, UITableViewDelegate {
     
 
     @IBAction func saveLocation(_ sender: Any) {
+        print("top placemark: \(selectedPlacemarkData?.locationPlacemark)")
         
         guard let selectedPlacemark = selectedPlacemarkData, (selectedPlacemark.locationRegion != nil) else {
             showAlert(title: "Cannot Save", message: "You have not selected any location, cannot save")
@@ -107,15 +106,14 @@ class LocationSearchController: UIViewController, UITableViewDelegate {
             selectedPlacemark.locationRegion?.notifyOnExit = false
             selectedPlacemark.notifyOnEntry = .notifyOnEntry
         case .notifyOnExit:
-            print("laaaaaa")
             selectedPlacemark.locationRegion?.notifyOnEntry = false
             selectedPlacemark.locationRegion?.notifyOnExit = true
             selectedPlacemark.notifyOnEntry = .notifyOnExit
         }
+        print("placemark string: \(selectedPlacemark.locationPlacemark)")
         
         delegate?.saveSucceeded(locationData: selectedPlacemark)
         self.navigationController?.popViewController(animated: true)
-        
     }
     
 
@@ -181,6 +179,7 @@ extension LocationSearchController: LocationManagerDelegate, MKMapViewDelegate {
         mapView.setRegion(region, animated: true)
         currentLocation = location.coordinate
         }
+        print("placemark in ob coordinate \(selectedPlacemarkData?.locationPlacemark)")
     }
     
     func failedWithError(_ error: LocationError) {
@@ -202,12 +201,24 @@ extension LocationSearchController: LocationManagerDelegate, MKMapViewDelegate {
         let circle = MKCircle(center: coordinate, radius: region.radius)
         mapView.add(circle)
         
-        // Update class location properties NOTE: Update this to be an init of a LocationData type
-        
-        
+        // Update class location properties
          selectedPlacemarkData = LocationData(coordinates: coordinate, placemark: placemark, region: region)
     }
     
+    /// Passed by viewdidload for when user viewing exiting reminder location
+    func updateExistingMapsLocation(with coordinate: CLLocationCoordinate2D?) {
+        
+        if let coordinate = coordinate {
+            let span = MKCoordinateSpan(latitudeDelta: 0.002, longitudeDelta: 0.002)
+            let region = MKCoordinateRegion(center: coordinate, span: span)
+            mapView.setRegion(region, animated: true)
+            mapView.removeOverlays(mapView.overlays)
+            let circle = MKCircle(center: coordinate, radius: 50)
+            mapView.add(circle)
+        }
+    }
+    
+    // Delegate to draw circle render on map
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         guard let circelOverLay = overlay as? MKCircle else {return MKOverlayRenderer()}
         

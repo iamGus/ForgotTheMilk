@@ -43,7 +43,7 @@ extension Reminder {
     }
     
     /// For section sorting, Active or past reminder heading
-    @objc var section: String? {
+    @objc var section: String {
         return isActive ? "Active Reminders" : "Past Reminders"
     }
     
@@ -63,7 +63,6 @@ extension Reminder {
         // store CLLocation
         let archivedLocation = NSKeyedArchiver.archivedData(withRootObject: location)
         reminder.setValue(archivedLocation, forKey: "location")
-        print("data description: \(reminder.location.description)")
         
         reminder.title = title as NSString
         reminder.placeMark = placemark as NSString

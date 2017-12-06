@@ -70,7 +70,6 @@ class DetailReminderController: UIViewController, LocationSearchDelegate {
             
             shortTitleTextfield.text = currentReminder.titleString
             locationButton.setTitle(currentReminder.placeMarkString, for: .normal)
-            print(currentReminder.notes)
             if let textView = currentReminder.notesString {
                 notesTextView.text = textView
             }
@@ -94,7 +93,7 @@ class DetailReminderController: UIViewController, LocationSearchDelegate {
             
         } else {
             // Must be a new reminder
-            print("New Reminder")
+            
         }
     }
     
@@ -173,7 +172,6 @@ class DetailReminderController: UIViewController, LocationSearchDelegate {
     
     // MARK: Navigation
     
-    // Setup DetailVC delegate
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showLocation" {
             let locationSearchController = segue.destination as! LocationSearchController
@@ -182,6 +180,7 @@ class DetailReminderController: UIViewController, LocationSearchDelegate {
             // If the user is viewing a existing entry or if the user is on a new entry but they have already chosen a lcoation but deciding to go abck and edit / change it
             
             if let locationData = remindersLocationData {
+                
                 locationSearchController.selectedPlacemarkData = locationData
             }
         }
@@ -197,6 +196,8 @@ class DetailReminderController: UIViewController, LocationSearchDelegate {
         }
         remindersLocationData = locationData
         remindersLocationData?.recurring = recurringData
+        
+        locationButton.setTitle(locationData.locationPlacemark, for: .normal)
     }
     
 }
