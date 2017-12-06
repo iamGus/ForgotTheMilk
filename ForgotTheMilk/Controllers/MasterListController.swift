@@ -30,11 +30,9 @@ class MasterListController: UITableViewController {
         
         tableView.rowHeight = 120
         tableView.dataSource = dataSource
-       
-        let reminder = CLLocationManager()
-        for region in reminder.monitoredRegions {
-            print("region: \(region.identifier)")
-        }
+        
+        let manager = CLLocationManager()
+        print("Count: \(manager.monitoredRegions.count)")
         
     }
 

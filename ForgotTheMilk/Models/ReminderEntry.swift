@@ -44,7 +44,14 @@ extension Reminder {
     
     /// For section sorting, Active or past reminder heading
     @objc var section: String {
-        return isActive ? "Active Reminders" : "Past Reminders"
+        //return isActive ? "Active Reminders" : "Past Reminders"
+        if isActive == true {
+            return "Active Reminders"
+        } else if isActive == false {
+            return "Past Reminders"
+        } else {
+            return "Unknown Reminders"
+        }
     }
     
     /// Sort all reminders by dateStamp

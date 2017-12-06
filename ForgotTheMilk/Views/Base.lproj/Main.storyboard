@@ -218,6 +218,7 @@
                         <outlet property="mapView" destination="pxZ-Qx-5jc" id="mH6-Py-U4F"/>
                         <outlet property="notesTextView" destination="kYz-Tu-DZB" id="AJq-An-dc3"/>
                         <outlet property="recurringSegmentState" destination="bue-Hl-g68" id="kBO-b7-JfY"/>
+                        <outlet property="saveButton" destination="LcE-ly-yZB" id="bPP-5k-VGd"/>
                         <outlet property="shortTitleTextfield" destination="7Yh-1w-LlR" id="3ON-ao-3xu"/>
                     </connections>
                 </viewController>

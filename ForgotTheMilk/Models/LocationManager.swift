@@ -133,7 +133,9 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
             throw AddLocationMonitoringError.permissionNotAlways
         }
         region.notifyOnEntry = passedRegion.notifyOnEntry
+        print("onEntry: \(region.notifyOnEntry)")
         region.notifyOnExit = passedRegion.notifyOnExit
+        print("onExi: \(region.notifyOnExit)")
         manager.startMonitoring(for: region)
     }
     

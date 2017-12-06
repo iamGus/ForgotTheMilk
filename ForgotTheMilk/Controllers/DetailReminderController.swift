@@ -22,6 +22,9 @@ class DetailReminderController: UIViewController, LocationSearchDelegate {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var recurringSegmentState: UISegmentedControl!
     
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+    
+    
     // Properties
     var managedObjectContext: NSManagedObjectContext!
     var currentReminder: Reminder? // If viewing current reminder master VC dependency injection
@@ -58,6 +61,7 @@ class DetailReminderController: UIViewController, LocationSearchDelegate {
         
         // If user touches screen when keyboard shown
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard)))
+    
         
         CheckIfNew()
     }
@@ -68,6 +72,7 @@ class DetailReminderController: UIViewController, LocationSearchDelegate {
         // If Current viewing current reminder
         if let currentReminder = currentReminder {
             
+            
             shortTitleTextfield.text = currentReminder.titleString
             locationButton.setTitle(currentReminder.placeMarkString, for: .normal)
             if let textView = currentReminder.notesString {
@@ -76,6 +81,11 @@ class DetailReminderController: UIViewController, LocationSearchDelegate {
             
             // initilize location data
             remindersLocationData = LocationData(coordinates: currentReminder.retreiveLocation, placemark: currentReminder.placeMarkString, recurring: currentReminder.recurringStatus, notifyOn: currentReminder.notifyOnStatus)
+            
+            // Check if reminder if currently deactivated, if it is then diable save button. To add addtional feature lateron to be able to re-save (which would reactivate) a deactivated reminder
+            if currentReminder.isActive == false {
+                saveButton.isEnabled = false
+            }
             
             // Check if recurring segmentState needs updated
             if let recurring = remindersLocationData?.recurring {
@@ -129,6 +139,12 @@ class DetailReminderController: UIViewController, LocationSearchDelegate {
             if let locationRegion = locationData.locationRegion {
                 tryAddMonitoring(region: locationRegion, objectID: updateReminder.objectID)
             }
+            
+            // If the reminder is deactivated, set to activated
+            if updateReminder.isActive == false {
+                updateReminder.isActive = true
+            }
+            updateReminder.section
             
             currentReminder = updateReminder
     
@@ -197,6 +213,7 @@ class DetailReminderController: UIViewController, LocationSearchDelegate {
         }
         remindersLocationData = locationData
         remindersLocationData?.recurring = recurringData
+        setupMapView(coordinate: remindersLocationData?.location2d)
         
         locationButton.setTitle(locationData.locationPlacemark, for: .normal)
     }

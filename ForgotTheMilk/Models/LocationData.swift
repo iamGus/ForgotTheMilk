@@ -41,6 +41,14 @@ class LocationData {
         self.notifyOnEntry = notifyOn
         self.locationRegion = CLCircularRegion(center: CLLocationCoordinate2D(latitude: coordinates.coordinate.latitude, longitude: coordinates.coordinate.longitude), radius: 50, identifier: "tempory")
         
+        switch self.notifyOnEntry {
+        case .notifyOnEntry:
+            self.locationRegion?.notifyOnEntry = true
+            self.locationRegion?.notifyOnExit = false
+        case .notifyOnExit:
+            self.locationRegion?.notifyOnEntry = false
+            self.locationRegion?.notifyOnExit = true
+        }
         //can I create a location region here?
     }
     
