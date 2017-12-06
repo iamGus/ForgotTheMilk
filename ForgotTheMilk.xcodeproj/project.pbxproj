@@ -173,8 +173,8 @@
 		18D474FC1FCD57C00004830E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				18D475071FCD79860004830E /* ReminderFetchedResultsController.swift */,
 				18D474FD1FCD58310004830E /* MasterListController.swift */,
+				18D475071FCD79860004830E /* ReminderFetchedResultsController.swift */,
 				18D4750D1FCDA74C0004830E /* DetailReminderController.swift */,
 				18DD997A1FCED2D20016F485 /* LocationSearchController.swift */,
 			);
@@ -472,6 +472,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W47864AP4M;
 				INFOPLIST_FILE = ForgotTheMilk/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = angusmuller.ForgotTheMilk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -487,6 +488,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W47864AP4M;
 				INFOPLIST_FILE = ForgotTheMilk/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = angusmuller.ForgotTheMilk;
 				PRODUCT_NAME = "$(TARGET_NAME)";

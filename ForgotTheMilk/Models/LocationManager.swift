@@ -137,4 +137,16 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         manager.startMonitoring(for: region)
     }
     
+    static func removeMonitoringOfReminder(objectID: NSManagedObjectID) {
+        let manager = CLLocationManager()
+        for region in manager.monitoredRegions {
+            print(region.identifier)
+            guard let circularRegion = region as? CLCircularRegion, circularRegion.identifier == objectID.uriRepresentation().absoluteString else {
+                print("could not remove monitoring")
+                continue }
+            manager.stopMonitoring(for: circularRegion)
+            print("monitoring removed")
+        }
+    }
+    
 }

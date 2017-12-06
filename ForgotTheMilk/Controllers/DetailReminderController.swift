@@ -125,7 +125,7 @@ class DetailReminderController: UIViewController, LocationSearchDelegate {
             // Update reminder entry
             let updateReminder: Reminder = Reminder.updateReminder(currentReminder: currentReminder!, title: titleText, location: locationData.locationCoordinates, notes: notesHasText, placemark: locationData.locationPlacemark, recurring: locationData.recurring, notifyOn: locationData.notifyOnEntry)
             
-            // If there is data in region, this means a new location has been chosen, update location reminder
+            // If there is data in region update location reminder
             if let locationRegion = locationData.locationRegion {
                 tryAddMonitoring(region: locationRegion, objectID: updateReminder.objectID)
             }
@@ -153,6 +153,7 @@ class DetailReminderController: UIViewController, LocationSearchDelegate {
             
             // Set monitoring of location
             tryAddMonitoring(region: locationRegion, objectID: newReminder.objectID)
+            
             
         }
         
@@ -250,6 +251,7 @@ extension DetailReminderController {
     func tryAddMonitoring(region: CLCircularRegion, objectID: NSManagedObjectID) {
         do {
             try locationManager.addMonitoringOfReminder(region: region, objectID: objectID)
+            print(objectID.description)
         } catch AddLocationMonitoringError.notSupported {
             showAlert(title: "Save Error", message: "Sorry but your device does not support lcoation monitoring, your reminder has been saved but you will not be alerted when notification vent has been triggered")
         } catch AddLocationMonitoringError.permissionNotAlways {

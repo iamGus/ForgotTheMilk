@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import CoreLocation
 
 
 class MasterListController: UITableViewController {
@@ -30,11 +31,58 @@ class MasterListController: UITableViewController {
         tableView.rowHeight = 120
         tableView.dataSource = dataSource
        
+        let reminder = CLLocationManager()
+        for region in reminder.monitoredRegions {
+            print("region: \(region.identifier)")
+        }
         
     }
 
     override func viewDidAppear(_ animated: Bool) {
         emptyTablePlaceholder() // show default text when tableview is empty
+    }
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let reminder = dataSource.fetchedResultsController.object(at: indexPath)
+        
+        if reminder.isActive {
+            let deactivateAction = UITableViewRowAction(style: .normal, title: "Deactivate", handler: { (rowAction, indexPath) in
+                reminder.isActive = false
+                self.managedObjectContext.saveChanges()
+                LocationManager.removeMonitoringOfReminder(objectID: reminder.objectID)
+                self.dataSource.fetchedResultsController.tryFetch()
+                tableView.reloadData()
+            })
+            
+            let deleteAction = UITableViewRowAction(style: .normal, title: "Delete", handler: { (rowAction, indexPath) in
+                self.managedObjectContext.delete(reminder)
+                self.managedObjectContext.saveChanges()
+                LocationManager.removeMonitoringOfReminder(objectID: reminder.objectID)
+
+            })
+            deactivateAction.backgroundColor = .blue
+            deleteAction.backgroundColor = .red
+            return [deactivateAction, deleteAction]
+        } else {
+            /* Addtional feature for future
+            let activateAction = UITableViewRowAction(style: .normal, title: "Activate", handler: { (rowAction, indexPath) in
+                reminder.isActive = true
+                self.managedObjectContext.saveChanges()
+                self.dataSource.fetchedResultsController.tryFetch()
+                tableView.reloadData()
+            })
+ */
+            let deleteAction = UITableViewRowAction(style: .normal, title: "Delete", handler: { (rowAction, indexPath) in
+                self.managedObjectContext.delete(reminder)
+                self.managedObjectContext.saveChanges()
+
+            })
+            //activateAction.backgroundColor = .blue
+            deleteAction.backgroundColor = .red
+            return [deleteAction]
+        }
+        
+        
     }
 
     // MARK: Navigation
@@ -76,7 +124,9 @@ extension MasterListController {
             label.textAlignment = .center
             label.tag = 1
             
+            
             self.tableView.addSubview(label)
+            
         }else{
             self.tableView.viewWithTag(1)?.removeFromSuperview()
         }

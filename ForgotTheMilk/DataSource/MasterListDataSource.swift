@@ -55,8 +55,10 @@ class MasterListDataSource: NSObject, UITableViewDataSource {
         return cell
     }
     
-    // Set action for delete button
+    
+    // Set action for delete button, note this gets overidden by editActionsForRowAt
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
         let entry = fetchedResultsController.object(at: indexPath)
         managedObjectContext.delete(entry)
         managedObjectContext.saveChanges()

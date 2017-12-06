@@ -25,10 +25,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var managedObjectContext: NSManagedObjectContext?
     
     weak var mainVCDelegate: NotificationFromAppDelegate?
+    
+    
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         locationManager.delegate = self
+        UNUserNotificationCenter.current().delegate = self
         
         // Setup notifications authorization request
         let center = UNUserNotificationCenter.current()
@@ -41,8 +44,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 self.window?.rootViewController?.showAlertApplicationSettings(forErorType: .turnOnNotifications)
             }
         }
-        
-        UNUserNotificationCenter.current().delegate = self
         
       
         
@@ -149,6 +150,7 @@ extension AppDelegate: CLLocationManagerDelegate {
         var reminder = reminder
         if reminder.recurringStatus == .onceonly {
             reminder.isActive = false
+            LocationManager.removeMonitoringOfReminder(objectID: reminder.objectID)
             //NOTE add remove notification method call here
             managedObjectContext.saveChanges()
             //managedObjectContext.saveChanges()
