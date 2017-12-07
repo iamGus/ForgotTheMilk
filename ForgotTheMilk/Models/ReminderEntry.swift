@@ -88,7 +88,6 @@ extension Reminder {
         // store CLLocation
         let archivedLocation = NSKeyedArchiver.archivedData(withRootObject: location)
         reminder.setValue(archivedLocation, forKey: "location")
-        print("data description: \(reminder.location.description)")
         
         if let notes = notes {
             reminder.notes = notes as NSString

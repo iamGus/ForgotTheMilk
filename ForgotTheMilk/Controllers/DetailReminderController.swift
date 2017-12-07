@@ -125,7 +125,7 @@ class DetailReminderController: UIViewController, LocationSearchDelegate {
         
         // Check if max characters have been entered in text field
         if titleText.count > 30 {
-            self.showAlert(title: "Alert", message: "Your title  exceeds the 50 characters limit, please shorten")
+            self.showAlert(title: "Alert", message: "Your title exceeds the 50 characters limit, please shorten")
             return
         }
         
@@ -208,7 +208,6 @@ class DetailReminderController: UIViewController, LocationSearchDelegate {
     
     // Once get locationData back from Location VC update location data
     func saveSucceeded(locationData: LocationData) {
-        print("Save succeeded hit")
         remindersLocationData = locationData
         setupMapView(coordinate: remindersLocationData?.location2d)
         
@@ -267,7 +266,7 @@ extension DetailReminderController {
             try locationManager.addMonitoringOfReminder(region: region, objectID: objectID)
             print(objectID.description)
         } catch AddLocationMonitoringError.notSupported {
-            showAlert(title: "Save Error", message: "Sorry but your device does not support location monitoring, your reminder has been saved but you will not be alerted when notification vent has been triggered")
+            showAlert(title: "Save Error", message: "Sorry but your device does not support location monitoring, your reminder has been saved but you will not be alerted when notification events have been triggered")
         } catch AddLocationMonitoringError.permissionNotAlways {
             showAlertApplicationSettings(forErorType: .setToWhenInUse)
         } catch {

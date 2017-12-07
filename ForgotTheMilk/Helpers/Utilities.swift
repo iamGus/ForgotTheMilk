@@ -19,6 +19,7 @@ extension MKMapView {
 
 
 class Utilities {
+    // Makes nicely formatted address
     static func parseAddress(from placemark: MKPlacemark) -> String {
         // put a space between "4" and "Melrose Place"
         let firstSpace = (placemark.subThoroughfare != nil && placemark.thoroughfare != nil) ? " " : ""

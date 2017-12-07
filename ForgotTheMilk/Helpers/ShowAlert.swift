@@ -10,7 +10,7 @@ import UIKit
 
 enum ShowAltertMessage: String {
     case setToWhenInUse = "Location permission is currently set to in use only, please change in settings to \"Always\" so app can find your location"
-    case notSetToAlways = "Sorry as your Location Permission is not set to \"Always\" the location function in this app will work"
+    case notSetToAlways = "Sorry as your Location Permission is not set to \"Always\" the location function in this app will not work"
     case turnOnNotifications = "Please turn on notifications access in settings so the app can notify you once a reminder is triggered"
     case locationsDefault = "Location permission is currently not allowed, please change in settings so app can find your location"
     case couldNotGetCoordinates = "Sorry but unable to get your position at this time"

@@ -92,11 +92,8 @@ extension AppDelegate: CLLocationManagerDelegate {
         }
     }
     
-    /// Restrive reminder from Core Data, returns nil if error
+    /// Retrieve reminder from Core Data, returns nil if error
     func getReminder(fromRegionIdentifier identifier: String) -> Reminder? {
-        
-        // Getting referance from the managed object context from masterListController which is the creator of the managedObjectContext
-       // let masterListController = UIApplication.shared.windows[0].rootViewController?.childViewControllers[0] as? MasterListController
         
         // Gets context from main VC
         mainVCDelegate?.updateContext()
@@ -125,11 +122,11 @@ extension AppDelegate: CLLocationManagerDelegate {
         
     }
     
-    // try retrive inastance of the Reminder and if success then call notifyUser and updateReminderState methods
+    // try retrieve inastance of the Reminder and if success then call notifyUser and updateReminderState methods
     func handleEvent(forRegion region: CLRegion) {
         guard let reminder = getReminder(fromRegionIdentifier: region.identifier) else {
-            // There was a problem access the notification data, inform user
-            notifyUser(title: "Reminder notifiction error", subtitle: "One of your notifications has just been triggered but error restriving notification data", notes: nil)
+            // There was a problem accessing the notification data, inform user
+            notifyUser(title: "Reminder notifiction error", subtitle: "One of your notifications has just been triggered but error retrieving notification data", notes: nil)
             return
         }
         

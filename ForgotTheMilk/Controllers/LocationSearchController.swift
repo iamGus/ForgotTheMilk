@@ -76,12 +76,12 @@ class LocationSearchController: UIViewController, UITableViewDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         if isAuthorized {
-            print("Is authorized")// If already authorised then go ahead and request current location
+            print("Is authorised")// If already authorised then go ahead and request current location
             
             locationManager.requestLocation()
         } else {
             // Else if not authorised then request permission
-            print("not authorized")
+            print("not authorised")
             requestLocationPermissions()
         }
     }
@@ -259,7 +259,7 @@ extension LocationSearchController: UISearchResultsUpdating, UISearchBarDelegate
                     // Needs more testing before activating the below
                     //self.searchController.isActive = false
                     //self.showAlert(title: "Error searching", message: "Unable to retrive search data, please check you ahve an internet conenction")
-                    print("Error restriving search data: \(searchError)")
+                    print("Error retrieving search data: \(searchError)")
                     return
                 }
                 self.dataSource.update(with: mapItems)

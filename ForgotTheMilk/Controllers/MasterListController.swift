@@ -32,7 +32,7 @@ class MasterListController: UITableViewController {
         tableView.dataSource = dataSource
         
         let manager = CLLocationManager()
-        print("Count: \(manager.monitoredRegions.count)")
+        print("Number of reminders currently monitoring location for: \(manager.monitoredRegions.count)")
         
     }
 
