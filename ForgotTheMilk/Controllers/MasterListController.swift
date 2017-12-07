@@ -49,7 +49,7 @@ class MasterListController: UITableViewController {
                 self.managedObjectContext.saveChanges()
                 LocationManager.removeMonitoringOfReminder(objectID: reminder.objectID)
                 self.dataSource.fetchedResultsController.tryFetch()
-                tableView.reloadData()
+                self.updateTableView()
             })
             
             let deleteAction = UITableViewRowAction(style: .normal, title: "Delete", handler: { (rowAction, indexPath) in
