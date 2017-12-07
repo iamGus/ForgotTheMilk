@@ -8,8 +8,9 @@
 
 import MapKit
 
+// Using apple built in MKLocalSearchRequest to get local locations relating to user search
+
 class LocalSearchAPI {
-    
     
     func search(withTerm term: String, at coordinate: CLLocationCoordinate2D, completion: @escaping ([MKMapItem], Error?) -> Void) {
         let request = MKLocalSearchRequest()

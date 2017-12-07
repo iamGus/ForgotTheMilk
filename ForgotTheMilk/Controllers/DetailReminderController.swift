@@ -69,7 +69,6 @@ class DetailReminderController: UIViewController, LocationSearchDelegate {
         // If user touches screen when keyboard shown
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard)))
     
-        
         CheckIfNew()
     }
     
@@ -86,11 +85,11 @@ class DetailReminderController: UIViewController, LocationSearchDelegate {
                 notesTextView.text = textView
             }
             
-            // initilize location data
+            // initialise location data
             remindersLocationData = LocationData(coordinates: currentReminder.retreiveLocation, placemark: currentReminder.placeMarkString, recurring: currentReminder.recurringStatus, notifyOn: currentReminder.notifyOnStatus)
             
             
-            // Check if reminder if currently deactivated, if it is then diable save button. To add addtional feature lateron to be able to re-save (which would reactivate) a deactivated reminder
+            // Check if reminder is currently deactivated, if it is then disable save button. To add addtional feature later on to be able to re-save (which would reactivate) a deactivated reminder
             if currentReminder.isActive == false {
                 saveButton.isEnabled = false
             }
@@ -133,7 +132,7 @@ class DetailReminderController: UIViewController, LocationSearchDelegate {
         // If there is data in current Entry property then we are editing an existing entry
         if currentReminder != nil {
             guard let locationData = remindersLocationData else {
-                // No location data, you must first choose a location befoer you can save
+                // No location data, you must first choose a location before you can save
                 showAlert(title: "Cannot save reminder", message: "You have not chosen a location yet, please first choose a location before saving")
                 return
             }
@@ -157,7 +156,7 @@ class DetailReminderController: UIViewController, LocationSearchDelegate {
             
         } else { // Else it must be a new entry
             guard let locationData = remindersLocationData, let locationRegion = locationData.locationRegion else {
-                // No location data, you must first choose a location befoer you can save
+                // No location data, you must first choose a location before you can save
                 showAlert(title: "Cannot save reminder", message: "You have not chosen a location yet, please first choose a location before saving")
                 return
             }
@@ -169,7 +168,7 @@ class DetailReminderController: UIViewController, LocationSearchDelegate {
                     return
                 }
             
-            // Need to save changes to manged object now so can get corerct saved ID
+            // Need to save changes to manged object now before add monitoring so can get correct saved ID
             managedObjectContext.saveChanges()
             
             // Set monitoring of location
@@ -178,7 +177,6 @@ class DetailReminderController: UIViewController, LocationSearchDelegate {
             
         }
         
-        //managedObjectContext.saveChanges()
         self.navigationController?.popViewController(animated: true)
         
     }
@@ -199,7 +197,7 @@ class DetailReminderController: UIViewController, LocationSearchDelegate {
             let locationSearchController = segue.destination as! LocationSearchController
             locationSearchController.delegate = self
             
-            // If the user is viewing a existing entry or if the user is on a new entry but they have already chosen a lcoation but deciding to go abck and edit / change it
+            // If the user is viewing a existing entry or if the user is on a new entry but they have already chosen a location but deciding to go back and edit / change it
             
             if let locationData = remindersLocationData {
                 
@@ -269,7 +267,7 @@ extension DetailReminderController {
             try locationManager.addMonitoringOfReminder(region: region, objectID: objectID)
             print(objectID.description)
         } catch AddLocationMonitoringError.notSupported {
-            showAlert(title: "Save Error", message: "Sorry but your device does not support lcoation monitoring, your reminder has been saved but you will not be alerted when notification vent has been triggered")
+            showAlert(title: "Save Error", message: "Sorry but your device does not support location monitoring, your reminder has been saved but you will not be alerted when notification vent has been triggered")
         } catch AddLocationMonitoringError.permissionNotAlways {
             showAlertApplicationSettings(forErorType: .setToWhenInUse)
         } catch {

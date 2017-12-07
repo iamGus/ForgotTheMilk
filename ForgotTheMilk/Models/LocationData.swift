@@ -15,13 +15,15 @@ enum NotifyOn: Int {
     case notifyOnExit
 }
 
+// Store location properties relating to a reminder
+
 class LocationData {
     var locationCoordinates: CLLocation // Used to store in Reminder Core Data entity
     var locationPlacemark: String
     var locationRegion: CLCircularRegion?
     var notifyOnEntry: NotifyOn = .notifyOnEntry
     var location2d: CLLocationCoordinate2D?
-    var recurring: Recurring = .recurring // This could  be removed as next version as not needing to be passed to location VC
+    var recurring: Recurring = .recurring // This could  be removed in next version as not needing to be passed to location VC
     
     // New entry init
     init(coordinates: CLLocationCoordinate2D, placemark: MKPlacemark, region: CLCircularRegion) {
@@ -39,7 +41,7 @@ class LocationData {
         self.location2d = CLLocationCoordinate2D(latitude: coordinates.coordinate.latitude, longitude: coordinates.coordinate.longitude)
         self.recurring = recurring
         self.notifyOnEntry = notifyOn
-        self.locationRegion = CLCircularRegion(center: CLLocationCoordinate2D(latitude: coordinates.coordinate.latitude, longitude: coordinates.coordinate.longitude), radius: 50, identifier: "tempory")
+        self.locationRegion = CLCircularRegion(center: CLLocationCoordinate2D(latitude: coordinates.coordinate.latitude, longitude: coordinates.coordinate.longitude), radius: 50, identifier: "temporary")
         
         switch self.notifyOnEntry {
         case .notifyOnEntry:
@@ -49,7 +51,7 @@ class LocationData {
             self.locationRegion?.notifyOnEntry = false
             self.locationRegion?.notifyOnExit = true
         }
-        //can I create a location region here?
+        
     }
     
    

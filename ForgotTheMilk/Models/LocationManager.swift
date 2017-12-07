@@ -49,11 +49,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         self.permissionsDelegate = permissionsDelegate
         super.init()
         manager.delegate = self
-       
-        
     }
-    
-    
     
     static var isAuthorized: Bool {
         switch CLLocationManager.authorizationStatus() {
@@ -118,6 +114,8 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         delegate?.obtainedCoordinates(location)
     }
     
+    // MARK: Monitoring
+    
     /// Adding location monitor for a Reminder
     func addMonitoringOfReminder(region: CLCircularRegion, objectID: NSManagedObjectID) throws {
         let passedRegion = region
@@ -133,12 +131,11 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
             throw AddLocationMonitoringError.permissionNotAlways
         }
         region.notifyOnEntry = passedRegion.notifyOnEntry
-        print("onEntry: \(region.notifyOnEntry)")
         region.notifyOnExit = passedRegion.notifyOnExit
-        print("onExi: \(region.notifyOnExit)")
         manager.startMonitoring(for: region)
     }
     
+    /// Removing location monitoring for a Reminder
     static func removeMonitoringOfReminder(objectID: NSManagedObjectID) {
         let manager = CLLocationManager()
         for region in manager.monitoredRegions {

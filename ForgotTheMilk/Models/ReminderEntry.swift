@@ -117,15 +117,13 @@ extension Reminder {
         return timeStamp as Date
     }
     
-// Restrive location
+    /// Retrieve location
     var retreiveLocation: CLLocation {
-        //return NSKeyedUnarchiver.unarchiveObject(with: location as NSData) as CLLocation
-        
         let data = NSKeyedUnarchiver.unarchiveObject(with: self.location as Data) as! CLLocation
         return data
-        
     }
     
+    /// Allow Recurring enum to work with recurringAmount int property
     var recurringStatus: Recurring {
         get {
             return Recurring(rawValue: Int(self.recurringAmount))!
@@ -135,6 +133,7 @@ extension Reminder {
         }
     }
     
+    /// Allow NotifyOn enum to work with notify int property
     var notifyOnStatus: NotifyOn {
         get {
             return NotifyOn(rawValue: Int(self.notify))!

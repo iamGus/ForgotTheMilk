@@ -124,21 +124,17 @@ class LocationSearchController: UIViewController, UITableViewDelegate {
         default: return
         }
     }
-    
-    
-    
 }
 
-//MARK: Location Permissions / authorization
+// MARK: Location Permissions / authorization
 extension LocationSearchController: LocationPermissionsDelegate {
     
-    //Request permission
+    // Request permission
     func requestLocationPermissions() {
         do {
             try locationManager.requestLocationAuthorization()
         } catch LocationError.setToWhenInUse {
             print("set to when in use")
-            //showAlertApplicationSettings(forErorType: LocationError.setToWhenInUse)
         } catch LocationError.disallowedByUser {
             // NOTE: This is where you would normaly have code bringing up alert to user that they need to change settings to allow the app to know location. But the didChangeAuthorization in locationManager is being triggered even when the authorization status has not changed meaning that the authroization failed with status deligate is being triggered which then brings up the correct UIAlert and thus why I have not put any code in here.
             print("disallowed by user")
@@ -161,13 +157,10 @@ extension LocationSearchController: LocationPermissionsDelegate {
         default: showAlertApplicationSettings(forErorType: ShowAltertMessage.notSetToAlways)
             
         }
-        
     }
-    
-    
-    
 }
-//MARK: Location and maps setting
+
+// MARK: Location and maps settings
 extension LocationSearchController: LocationManagerDelegate, MKMapViewDelegate {
     func obtainedCoordinates(_ location: CLLocation) {
         // If there is already location data from detail view then only update curent location property otherwise display current location on map
@@ -206,7 +199,7 @@ extension LocationSearchController: LocationManagerDelegate, MKMapViewDelegate {
          selectedPlacemarkData = LocationData(coordinates: coordinate, placemark: placemark, region: region)
     }
     
-    /// Passed by viewdidload for when user viewing exiting reminder location
+    /// Passed by viewdidload for when user viewing existing reminder location
     func updateExistingMapsLocation(with coordinate: CLLocationCoordinate2D?) {
         
         if let coordinate = coordinate {
@@ -234,11 +227,11 @@ extension LocationSearchController: LocationManagerDelegate, MKMapViewDelegate {
 }
 // MARK: Search bar and table results
 
+// Not using but delegate requires for it to be here, using textDidChange instead
 extension LocationSearchController: UISearchResultsUpdating, UISearchBarDelegate {
     func updateSearchResults(for searchController: UISearchController) {
         
     }
-    
     
     /// Setup search bar
     func configureSearchController() {
@@ -250,7 +243,7 @@ extension LocationSearchController: UISearchResultsUpdating, UISearchBarDelegate
         searchViewContainer.addSubview(searchController.searchBar)
     }
 
-    
+    // When user begins to enter text into search bar
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         if isAuthorized {
@@ -261,8 +254,9 @@ extension LocationSearchController: UISearchResultsUpdating, UISearchBarDelegate
             }
             
             client.search(withTerm: searchText, at: currentLocation) { (mapItems, error) in
-                // IF there is no internet connection this error notice is triggered, note though the apple map kit takes too long to bring back this error so would need to inhance this so error came abck quicker in a production app.
+                // If there is no internet connection this error notice is triggered, note though the apple map kit takes too long to bring back this error so would need to inhance this so error somes back quicker in a production app.
                 if let searchError = error  {
+                    // Needs more testing before activating the below
                     //self.searchController.isActive = false
                     //self.showAlert(title: "Error searching", message: "Unable to retrive search data, please check you ahve an internet conenction")
                     print("Error restriving search data: \(searchError)")
@@ -288,8 +282,5 @@ extension LocationSearchController: UISearchResultsUpdating, UISearchBarDelegate
         let cell = dataSource.object(at: indexPath).placemark
         updateMapsLocation(with: cell)
     }
-    
-    
-    
 }
 

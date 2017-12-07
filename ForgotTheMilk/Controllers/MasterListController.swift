@@ -60,7 +60,7 @@ class MasterListController: UITableViewController {
             deleteAction.backgroundColor = .red
             return [deactivateAction, deleteAction]
         } else {
-            /* Addtional feature for future
+            /* // Additional feature for future
             let activateAction = UITableViewRowAction(style: .normal, title: "Activate", handler: { (rowAction, indexPath) in
                 reminder.isActive = true
                 self.managedObjectContext.saveChanges()
@@ -77,10 +77,7 @@ class MasterListController: UITableViewController {
             return [deleteAction]
         }
         
- 
     }
- 
-
  
     // MARK: Navigation
     
@@ -96,10 +93,6 @@ class MasterListController: UITableViewController {
             detailsViewController.managedObjectContext = self.managedObjectContext // send referance of context
         }
     }
-    
-    
-    
-
 }
 
 // show default text when tableview is empty
@@ -107,7 +100,6 @@ extension MasterListController {
     func emptyTablePlaceholder(){
         if self.tableView.visibleCells.isEmpty {
             tableView.tableFooterView = UIView(frame: CGRect.zero)
-          //  tableView.backgroundColor = UIColor.clearColor()
             
             let label = UILabel()
             label.frame.size.height = 42
@@ -142,6 +134,5 @@ extension MasterListController: NotificationFromAppDelegate {
             tableView.reloadData()
             print("tableview updated")
     }
-    
     
 }
