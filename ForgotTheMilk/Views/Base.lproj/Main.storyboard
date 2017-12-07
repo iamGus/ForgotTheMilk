@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="otR-4X-Tr3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="otR-4X-Tr3">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -107,16 +107,16 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="140"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Get Milk!" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Yh-1w-LlR">
-                                        <rect key="frame" x="10" y="10" width="355" height="50"/>
+                                        <rect key="frame" x="10" y="10" width="355" height="55"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="Cfw-z2-qgh"/>
+                                            <constraint firstAttribute="height" constant="55" id="Cfw-z2-qgh"/>
                                         </constraints>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="50"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                     </textField>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Enter extra notes here" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="kYz-Tu-DZB">
-                                        <rect key="frame" x="8" y="65" width="359" height="75"/>
+                                        <rect key="frame" x="8" y="70" width="359" height="70"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
@@ -143,10 +143,9 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="upS-WI-7dX">
-                                <rect key="frame" x="54" y="212" width="181" height="30"/>
+                                <rect key="frame" x="54" y="212" width="311" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Ekm-wz-u95"/>
-                                    <constraint firstAttribute="width" constant="181" id="v9p-eT-I3Z"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Click here to set location">
@@ -193,6 +192,7 @@
                             <constraint firstItem="upS-WI-7dX" firstAttribute="leading" secondItem="snV-zh-EdG" secondAttribute="trailing" constant="8" id="EVU-0W-wju"/>
                             <constraint firstItem="pxZ-Qx-5jc" firstAttribute="top" secondItem="bue-Hl-g68" secondAttribute="bottom" constant="10" id="J2a-M2-BLg"/>
                             <constraint firstItem="pxZ-Qx-5jc" firstAttribute="bottom" secondItem="YPZ-12-b6y" secondAttribute="bottom" id="Pt6-gw-MaK"/>
+                            <constraint firstItem="YPZ-12-b6y" firstAttribute="trailing" secondItem="upS-WI-7dX" secondAttribute="trailing" constant="10" id="QPZ-xt-WEG"/>
                             <constraint firstItem="snV-zh-EdG" firstAttribute="top" secondItem="HFG-LU-vUH" secondAttribute="bottom" constant="8" id="T9p-yc-bzT"/>
                             <constraint firstItem="bue-Hl-g68" firstAttribute="centerY" secondItem="3In-bk-mwF" secondAttribute="centerY" id="WdB-9n-RCd"/>
                             <constraint firstItem="snV-zh-EdG" firstAttribute="leading" secondItem="YPZ-12-b6y" secondAttribute="leading" constant="16" id="bkL-QX-MaS"/>
@@ -284,12 +284,12 @@
                                 <rect key="frame" x="0.0" y="427" width="375" height="40"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alert me when:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wJi-gN-2vI">
-                                        <rect key="frame" x="8" y="9" width="116" height="21"/>
+                                        <rect key="frame" x="0.0" y="9" width="116" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="qiy-Nl-mtP">
-                                        <rect key="frame" x="134" y="6" width="231" height="29"/>
+                                        <rect key="frame" x="116" y="6" width="231" height="29"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <segments>
                                             <segment title="Arriving"/>

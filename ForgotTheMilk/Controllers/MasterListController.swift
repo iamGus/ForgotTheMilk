@@ -64,8 +64,6 @@ class MasterListController: UITableViewController {
             let activateAction = UITableViewRowAction(style: .normal, title: "Activate", handler: { (rowAction, indexPath) in
                 reminder.isActive = true
                 self.managedObjectContext.saveChanges()
-                self.dataSource.fetchedResultsController.tryFetch()
-                tableView.reloadData()
             })
  */
             let deleteAction = UITableViewRowAction(style: .normal, title: "Delete", handler: { (rowAction, indexPath) in

@@ -42,15 +42,10 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Requires access to your location to notify you when you enter or leave a area.2</string>
+	<string>Requires access to your location to notify you when you enter or leave an area</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Requires access to your location to notify you when you enter or leave a area3</string>
+	<string>Requires access to your location to notify you when you enter or leave an area</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Requires access to your location to notify you when you enter or leave a area1
-&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;
-&lt;plist version=&quot;1.0&quot;&gt;
-&lt;string&gt;Requires access to your location to notify you when you enter or leave a area3&lt;/string&gt;
-&lt;/plist&gt;
-</string>
+	<string>Requires access to your location to notify you when you enter or leave an area</string>
 </dict>
 </plist>
