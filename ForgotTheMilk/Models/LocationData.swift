@@ -21,7 +21,7 @@ class LocationData {
     var locationRegion: CLCircularRegion?
     var notifyOnEntry: NotifyOn = .notifyOnEntry
     var location2d: CLLocationCoordinate2D?
-    var recurring: Recurring = .recurring
+    var recurring: Recurring = .recurring // This could  be removed as next version as not needing to be passed to location VC
     
     // New entry init
     init(coordinates: CLLocationCoordinate2D, placemark: MKPlacemark, region: CLCircularRegion) {

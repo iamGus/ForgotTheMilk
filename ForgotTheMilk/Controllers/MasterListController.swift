@@ -39,7 +39,7 @@ class MasterListController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         emptyTablePlaceholder() // show default text when tableview is empty
     }
-    
+    /*
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let reminder = dataSource.fetchedResultsController.object(at: indexPath)
         
@@ -77,12 +77,15 @@ class MasterListController: UITableViewController {
             })
             //activateAction.backgroundColor = .blue
             deleteAction.backgroundColor = .red
+            tableView.reloadData()
             return [deleteAction]
         }
         
-        
+        updateTableView()
     }
+    */
 
+ 
     // MARK: Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

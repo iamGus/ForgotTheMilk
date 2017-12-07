@@ -210,14 +210,8 @@ class DetailReminderController: UIViewController, LocationSearchDelegate {
     
     // Once get locationData back from Location VC update location data
     func saveSucceeded(locationData: LocationData) {
-        
-        // The user may have already set the recurring option so store this tempory and then put back in
-        guard let recurringData = remindersLocationData?.recurring else {
-            remindersLocationData = locationData
-            return
-        }
+        print("Save succeeded hit")
         remindersLocationData = locationData
-        remindersLocationData?.recurring = recurringData
         setupMapView(coordinate: remindersLocationData?.location2d)
         
         locationButton.setTitle(locationData.locationPlacemark, for: .normal)
