@@ -156,7 +156,7 @@
                                     <segue destination="qTs-rA-8PG" kind="show" identifier="showLocation" id="C6t-mf-Adc"/>
                                 </connections>
                             </button>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="pxZ-Qx-5jc">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pxZ-Qx-5jc">
                                 <rect key="frame" x="0.0" y="284" width="375" height="383"/>
                                 <connections>
                                     <outlet property="delegate" destination="t2a-uf-bLy" id="25a-jB-NWZ"/>
@@ -264,7 +264,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="LPt-gk-VSL">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LPt-gk-VSL">
                                 <rect key="frame" x="0.0" y="467" width="375" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="pXy-Fa-BPn"/>

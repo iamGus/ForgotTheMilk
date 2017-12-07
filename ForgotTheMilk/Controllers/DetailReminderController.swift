@@ -144,7 +144,6 @@ class DetailReminderController: UIViewController, LocationSearchDelegate {
             if updateReminder.isActive == false {
                 updateReminder.isActive = true
             }
-            updateReminder.section
             
             currentReminder = updateReminder
     

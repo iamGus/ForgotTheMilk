@@ -44,20 +44,14 @@ extension Reminder {
     
     /// For section sorting, Active or past reminder heading
     @objc var section: String {
-        //return isActive ? "Active Reminders" : "Past Reminders"
-        if isActive == true {
-            return "Active Reminders"
-        } else if isActive == false {
-            return "Past Reminders"
-        } else {
-            return "Unknown Reminders"
-        }
+        return isActive ? "Active Reminders" : "Past Reminders"
     }
     
     /// Sort all reminders by dateStamp
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Reminder> {
         let request = NSFetchRequest<Reminder>(entityName: entityName)
         let sortDescriptor = NSSortDescriptor(key: "timeStamp", ascending: false)
+        //let sortDescriptor2 = NSSortDescriptor(key: "isActive", ascending: true)
         request.sortDescriptors = [sortDescriptor]
         return request
     }
@@ -85,7 +79,7 @@ extension Reminder {
     }
     
     class func updateReminder(currentReminder: Reminder, title: String, location: CLLocation, notes: String?, placemark: String, recurring: Recurring, notifyOn: NotifyOn) -> Reminder {
-        var reminder = currentReminder
+        let reminder = currentReminder
         reminder.title = title as NSString
         reminder.placeMark = placemark as NSString
         reminder.recurringStatus = recurring

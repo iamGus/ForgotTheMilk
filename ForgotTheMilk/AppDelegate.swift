@@ -115,10 +115,7 @@ extension AppDelegate: CLLocationManagerDelegate {
         }
         
         do {
-            var reminder = try managedObjectContext.existingObject(with: objectID) as? Reminder
-            print("got reminder")
-            
-           
+            let reminder = try managedObjectContext.existingObject(with: objectID) as? Reminder
             return reminder
             
         } catch let error {
@@ -147,13 +144,11 @@ extension AppDelegate: CLLocationManagerDelegate {
         }
         
         // Set reminder to deactivated
-        var reminder = reminder
+        let reminder = reminder
         if reminder.recurringStatus == .onceonly {
             reminder.isActive = false
             LocationManager.removeMonitoringOfReminder(objectID: reminder.objectID)
-            //NOTE add remove notification method call here
             managedObjectContext.saveChanges()
-            //managedObjectContext.saveChanges()
             mainVCDelegate?.updateTableView()
         }
         

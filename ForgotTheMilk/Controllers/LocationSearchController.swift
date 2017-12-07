@@ -77,6 +77,7 @@ class LocationSearchController: UIViewController, UITableViewDelegate {
     override func viewDidAppear(_ animated: Bool) {
         if isAuthorized {
             print("Is authorized")// If already authorised then go ahead and request current location
+            
             locationManager.requestLocation()
         } else {
             // Else if not authorised then request permission
@@ -92,7 +93,6 @@ class LocationSearchController: UIViewController, UITableViewDelegate {
     
 
     @IBAction func saveLocation(_ sender: Any) {
-        print("top placemark: \(selectedPlacemarkData?.locationPlacemark)")
         
         guard let selectedPlacemark = selectedPlacemarkData, (selectedPlacemark.locationRegion != nil) else {
             showAlert(title: "Cannot Save", message: "You have not selected any location, cannot save")
@@ -178,8 +178,9 @@ extension LocationSearchController: LocationManagerDelegate, MKMapViewDelegate {
         let region = MKCoordinateRegion(center: location.coordinate, span: span)
         mapView.setRegion(region, animated: true)
         currentLocation = location.coordinate
+        
         }
-        print("placemark in ob coordinate \(selectedPlacemarkData?.locationPlacemark)")
+
     }
     
     func failedWithError(_ error: LocationError) {
@@ -188,7 +189,7 @@ extension LocationSearchController: LocationManagerDelegate, MKMapViewDelegate {
     
     func updateMapsLocation(with placemark: MKPlacemark) {
         
-        mapView.annotations.flatMap { mapView.removeAnnotation($0) } // remove any previous placemark on map
+        mapView.removeAnnotations(mapView.annotations) // remove any previous placemark on map
         let annotation = MKPointAnnotation()
         let coordinate = placemark.coordinate
         annotation.coordinate = coordinate
@@ -264,7 +265,7 @@ extension LocationSearchController: UISearchResultsUpdating, UISearchBarDelegate
                 if let searchError = error  {
                     //self.searchController.isActive = false
                     //self.showAlert(title: "Error searching", message: "Unable to retrive search data, please check you ahve an internet conenction")
-                    print("Error restriving search data: \(error)")
+                    print("Error restriving search data: \(searchError)")
                     return
                 }
                 self.dataSource.update(with: mapItems)
@@ -287,6 +288,8 @@ extension LocationSearchController: UISearchResultsUpdating, UISearchBarDelegate
         let cell = dataSource.object(at: indexPath).placemark
         updateMapsLocation(with: cell)
     }
+    
+    
     
 }
 
