@@ -39,7 +39,7 @@ class MasterListController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         emptyTablePlaceholder() // show default text when tableview is empty
     }
-    /*
+    
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let reminder = dataSource.fetchedResultsController.object(at: indexPath)
         
@@ -48,8 +48,6 @@ class MasterListController: UITableViewController {
                 reminder.isActive = false
                 self.managedObjectContext.saveChanges()
                 LocationManager.removeMonitoringOfReminder(objectID: reminder.objectID)
-                self.dataSource.fetchedResultsController.tryFetch()
-                self.updateTableView()
             })
             
             let deleteAction = UITableViewRowAction(style: .normal, title: "Delete", handler: { (rowAction, indexPath) in
@@ -77,13 +75,13 @@ class MasterListController: UITableViewController {
             })
             //activateAction.backgroundColor = .blue
             deleteAction.backgroundColor = .red
-            tableView.reloadData()
+            
             return [deleteAction]
         }
         
-        updateTableView()
+ 
     }
-    */
+ 
 
  
     // MARK: Navigation

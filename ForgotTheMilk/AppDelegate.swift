@@ -149,7 +149,7 @@ extension AppDelegate: CLLocationManagerDelegate {
             reminder.isActive = false
             LocationManager.removeMonitoringOfReminder(objectID: reminder.objectID)
             managedObjectContext.saveChanges()
-            mainVCDelegate?.updateTableView()
+            //mainVCDelegate?.updateTableView()
         }
         
     }
