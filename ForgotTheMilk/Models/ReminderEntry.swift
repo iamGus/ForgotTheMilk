@@ -43,16 +43,16 @@ extension Reminder {
     }
     
     /// For section sorting, Active or past reminder heading
-    @objc var section: String {
+    @objc var section: String? {
         return isActive ? "Active Reminders" : "Past Reminders"
     }
     
     /// Sort all reminders by dateStamp
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Reminder> {
         let request = NSFetchRequest<Reminder>(entityName: entityName)
-        let sortDescriptor = NSSortDescriptor(key: "timeStamp", ascending: false)
-        //let sortDescriptor2 = NSSortDescriptor(key: "isActive", ascending: true)
-        request.sortDescriptors = [sortDescriptor]
+        let sortDescriptor = NSSortDescriptor(key: "isActive", ascending: false)
+        let sortDescriptor2 = NSSortDescriptor(key: "timeStamp", ascending: false)
+        request.sortDescriptors = [sortDescriptor, sortDescriptor2]
         return request
     }
     

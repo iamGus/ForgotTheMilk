@@ -31,8 +31,6 @@ class MasterListController: UITableViewController {
         tableView.rowHeight = 120
         tableView.dataSource = dataSource
         
-        print(dataSource.fetchedResultsController.fetchedObjects)
-        
         let manager = CLLocationManager()
         print("Count: \(manager.monitoredRegions.count)")
         
