@@ -29,6 +29,13 @@ class DetailReminderController: UIViewController, LocationSearchDelegate {
     var managedObjectContext: NSManagedObjectContext!
     var currentReminder: Reminder? // If viewing current reminder master VC dependency injection
     var locationManager = LocationManager(delegate: nil, permissionsDelegate: nil)
+    var segmentState: Recurring {
+        if recurringSegmentState.selectedSegmentIndex == 0 {
+            return .recurring
+        } else {
+            return .onceonly
+        }
+    }
     
     // Store Region and location data
     var remindersLocationData: LocationData? // Passed from LocationsSearchController
@@ -82,6 +89,7 @@ class DetailReminderController: UIViewController, LocationSearchDelegate {
             // initilize location data
             remindersLocationData = LocationData(coordinates: currentReminder.retreiveLocation, placemark: currentReminder.placeMarkString, recurring: currentReminder.recurringStatus, notifyOn: currentReminder.notifyOnStatus)
             
+            
             // Check if reminder if currently deactivated, if it is then diable save button. To add addtional feature lateron to be able to re-save (which would reactivate) a deactivated reminder
             if currentReminder.isActive == false {
                 saveButton.isEnabled = false
@@ -109,8 +117,6 @@ class DetailReminderController: UIViewController, LocationSearchDelegate {
     
     @IBAction func save(_ sender: Any) {
         
-        
-        
         // Check textfield not empty
         guard let titleText = shortTitleTextfield.text, titleText != "" else {
         
@@ -133,7 +139,7 @@ class DetailReminderController: UIViewController, LocationSearchDelegate {
             }
             
             // Update reminder entry
-            let updateReminder: Reminder = Reminder.updateReminder(currentReminder: currentReminder!, title: titleText, location: locationData.locationCoordinates, notes: notesHasText, placemark: locationData.locationPlacemark, recurring: locationData.recurring, notifyOn: locationData.notifyOnEntry)
+            let updateReminder: Reminder = Reminder.updateReminder(currentReminder: currentReminder!, title: titleText, location: locationData.locationCoordinates, notes: notesHasText, placemark: locationData.locationPlacemark, recurring: segmentState, notifyOn: locationData.notifyOnEntry)
             
             // If there is data in region update location reminder
             if let locationRegion = locationData.locationRegion {
@@ -157,7 +163,7 @@ class DetailReminderController: UIViewController, LocationSearchDelegate {
             }
             
             
-            guard let newReminder = Reminder.insertNewReminder(in: managedObjectContext, title: titleText, location: locationData.locationCoordinates, notes: notesHasText, placemark: locationData.locationPlacemark, recurring: locationData.recurring, notifyOn: locationData.notifyOnEntry) else {
+            guard let newReminder = Reminder.insertNewReminder(in: managedObjectContext, title: titleText, location: locationData.locationCoordinates, notes: notesHasText, placemark: locationData.locationPlacemark, recurring: segmentState, notifyOn: locationData.notifyOnEntry) else {
                 
                     showAlert(title: "Save Error", message: "Sorry could not save reminder, please try again")
                     return
